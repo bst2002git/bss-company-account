@@ -1,0 +1,48 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CompanyAccount
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * New Customer block template
+ *
+ * @var \Bss\CompanyAccount\Block\Form\Login\Info $block
+ */
+?>
+
+<?php
+$enable = true;// $block->isEnable();
+$createCompanyAccBtnText = 'Create a Company Account';// $block->getCreateCompanyAccBtnText();
+$createCompanyAccUrl = 'https://example-link.bss.com/create-new-company-account.html';// $block->getCreateCompanyAccUrl();
+?>
+
+<div class="block-new-company-account">
+    <div class="block-title">
+        <strong id="block-new-customer-heading" role="heading" aria-level="2"><?php echo $block->escapeHtml(__('New Company Account')) ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-new-customer-heading">
+        <p><?php echo $block->escapeHtml(__('If you are a company representative, use this feature to be able to manage subaccounts and other B2B features.')) ?></p>
+        <div class="actions-toolbar">
+            <?php if ($enable): ?>
+                <div class="second-primary">
+                    <a href="<?php echo $block->escapeUrl($createCompanyAccUrl) ?>" class="action create primary"><span><?php echo $block->escapeHtml(__($createCompanyAccBtnText)) ?></span></a>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>
