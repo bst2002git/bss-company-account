@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?php
 /**
  * BSS Commerce Co.
  *
@@ -16,11 +15,23 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
--->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Bss_CompanyAccount" setup_version="1.0.0">
-        <sequence>
-            <module name="Magento_Customer"/>
-        </sequence>
-    </module>
-</config>
+namespace Bss\CompanyAccount\Controller\Adminhtml\System\Config;
+
+use Magento\Framework\App\Action\Action;
+
+/**
+ * Class ApplyCustomerGroups
+ *
+ * @package Bss\CompanyAccount\Controller\Adminhtml\System\Config
+ */
+class ApplyCustomerGroups extends Action
+{
+
+    /**
+     * @inheritDoc
+     */
+    public function execute()
+    {
+        dd($this->getRequest()->getParams());
+    }
+}

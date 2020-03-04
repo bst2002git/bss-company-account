@@ -1,0 +1,44 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CompanyAccount
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php /** @var \Bss\CompanyAccount\Block\System\Config\Button $block */ ?>
+
+<?php echo $block->getButtonHtml() ?>
+<span class="loader-indicator" id="apply_customer_groups_span">
+    <span class="processing" hidden="hidden">
+        <img alt="Applying" style="margin:0 5px"
+             src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+        <?php echo $block->escapeHtml(__('Applying ...')) ?>
+    </span>
+    <span hidden="hidden" class="success">
+        <img alt="Applied" style="margin:-3px 5px"
+             src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+        <?php echo $block->escapeHtml(__('Success!')) ?>
+    </span>
+    <span id="message_span"></span>
+</span>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_CompanyAccount/js/apply_customer_groups": {
+                "customerGroupsUrl": "<?php /* @noEscape */ echo $block->getAjaxUrl() ?>"
+            }
+        }
+    }
+</script>
