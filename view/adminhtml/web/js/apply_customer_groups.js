@@ -36,7 +36,7 @@ define([
             });
 
             if (selectedGroups.length > 0) {
-                self.closest('.value').find('.success').hide();
+                self.closest('.value').find('[noti-block]').hide();
                 self.closest('.value').find('.processing').show();
                 // $('#message_span').text('');
                 $.ajax({
@@ -47,15 +47,13 @@ define([
                         groupIds: selectedGroups
                     }
                 }).done(function (res) {
-                    self.closest('.value').find('.success').show();
+                    let $notiBlock = self.closest('.value').find(`.${res.status}`);
+                    $notiBlock.show();
                     self.closest('.value').find('.processing').hide();
-                    // $('#message_span').text('');
-                    console.log(res);
+                    $notiBlock.find('#message_span').text(res.message);
+
                 }).fail(function (res) {
-                    self.closest('.value').find('.success').show();
                     self.closest('.value').find('.processing').hide();
-                    // $('#message_span').text('');
-                    console.log(res);
                 });
             } else {
                 alert({

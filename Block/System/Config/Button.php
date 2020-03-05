@@ -29,18 +29,18 @@ class Button extends Field
 {
     /** @var string */
     protected $_template = 'Bss_CompanyAccount::system/config/apply_customer_groups.phtml';
-//
-//    /**
-//     * Remove scope label
-//     *
-//     * @param  AbstractElement $element
-//     * @return string
-//     */
-//    public function render(AbstractElement $element)
-//    {
-//        $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
-//        return parent::render($element);
-//    }
+
+    /**
+     * Remove scope label
+     *
+     * @param  AbstractElement $element
+     * @return string
+     */
+    public function render(AbstractElement $element)
+    {
+        $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
+        return parent::render($element);
+    }
 
     /**
      * Return element html
@@ -72,11 +72,11 @@ class Button extends Field
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(
-            'Magento\Backend\Block\Widget\Button'
+            \Magento\Backend\Block\Widget\Button::class
         )->setData(
             [
                 'id' => 'apply_cg_button',
-                'label' => __('Apply For Customer Groups'),
+                'label' => __('Apply'),
             ]
         );
 

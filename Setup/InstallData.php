@@ -24,6 +24,7 @@ use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Bss\CompanyAccount\Api\Data\SubRoleInterface as Role;
 
 /**
  * Class InstallData
@@ -68,6 +69,14 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
+        $data = [
+            Role::ID => 0,
+            Role::NAME => 'admin',
+            Role::TYPE => '0'
+        ];
+
+        $setup->getConnection()->insertForce($setup->getTable('bss_sub_role'), $data);
+
         $setup->startSetup();
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
@@ -85,13 +94,12 @@ class InstallData implements InstallDataInterface
                 'label' => 'Is Company Account',
                 'input' => 'boolean',
                 'required' => false,
-                'sort_order' => 150,
+                'sort_order' => 120,
                 'visible' => false,
                 'user_defined' => true,
-                'position' => 1010,
+                'position' => 500,
                 'system' => false,
                 'is_used_in_grid' => true,
-                'is_visible_in_grid' => true,
                 'type' => 'int',
                 'default' => false,
                 'source' => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class

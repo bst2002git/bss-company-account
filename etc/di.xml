@@ -19,4 +19,19 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--  Api company account  -->
+    <preference for="Bss\CompanyAccount\Api\SubRoleRepositoryInterface"
+                type="Bss\CompanyAccount\Model\SubRoleRepository" />
+    <preference for="Bss\CompanyAccount\Api\Data\SubRoleInterface"
+                type="Bss\CompanyAccount\Model\SubRole" />
+    <preference for="Bss\CompanyAccount\Api\SubUserRepositoryInterface"
+                type="Bss\CompanyAccount\Model\SubUserRepository" />
+    <preference for="Bss\CompanyAccount\Api\Data\SubUserInterface"
+                type="Bss\CompanyAccount\Model\SubUser" />
+    <preference for="Bss\CompanyAccount\Api\Data\SubRoleSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Bss\CompanyAccount\Api\Data\SubUserSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+
 </config>

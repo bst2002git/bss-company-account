@@ -18,19 +18,19 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
-    <template id="bss_company_account_email_email_new_ca" label="BSS CA - New Company Account"
-              file="new_company_account.html" type="html" module="Bss_CompanyAccount"
+    <template id="bss_company_account_ca_admin_email_approval" label="BSS CA - Company Account Approval"
+              file="company_account_approval.html" type="html" module="Bss_CompanyAccount"
               area="frontend"/>
-    <template id="bss_company_account_email_email_remove_from_ca" label="BSS CA - Be Remove Company Account"
-              file="be_remove_company_account.html" type="html" module="Bss_CompanyAccount"
+    <template id="bss_company_account_ca_admin_email_remove" label="BSS CA - Company Account Remove"
+              file="company_account_remove.html" type="html" module="Bss_CompanyAccount"
               area="frontend"/>
-    <template id="bss_company_account_email_email_subuser_invitation" label="BSS CA - Sub User Invitation"
+    <template id="bss_company_account_subuser_email_invitation" label="BSS CA - Sub User Invitation"
               file="subuser_invitation.html" type="html" module="Bss_CompanyAccount"
               area="frontend"/>
-    <template id="bss_company_account_email_email_joined_subuser" label="BSS CA - Joined Sub User Notification"
+    <template id="bss_company_account_subuser_email_welcome" label="BSS CA - Welcome Sub User Notification"
               file="joined_subuser.html" type="html" module="Bss_CompanyAccount"
               area="frontend"/>
-    <template id="bss_company_account_email_email_subuser_disabled" label="BSS CA - Disabled Sub User Notification"
+    <template id="bss_company_account_subuser_email_disabled" label="BSS CA - Disabled Sub User Notification"
               file="disabled_subuser.html" type="html" module="Bss_CompanyAccount"
               area="frontend"/>
 </config>

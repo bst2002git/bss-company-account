@@ -25,12 +25,24 @@
              src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
         <?php echo $block->escapeHtml(__('Applying ...')) ?>
     </span>
-    <span hidden="hidden" class="success">
+    <span hidden="hidden" class="success" noti-block>
         <img alt="Applied" style="margin:-3px 5px"
              src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
-        <?php echo $block->escapeHtml(__('Success!')) ?>
+        <span id="message_span"></span>
     </span>
-    <span id="message_span"></span>
+
+    <span hidden="hidden" class="error" noti-block>
+        <img alt="Applied" style="margin:-3px 5px"
+             src="<?php echo $block->getViewFileUrl('Bss_CompanyAccount::images/i_msg-error.gif') ?>"/>
+        <span id="message_span"></span>
+    </span>
+
+    <span hidden="hidden" class="warning" noti-block>
+        <img alt="Applied" style="margin:-3px 5px"
+             src="<?php echo $block->getViewFileUrl('Bss_CompanyAccount::images/i_msg-note.gif') ?>"/>
+        <span id="message_span"></span>
+    </span>
+
 </span>
 
 <script type="text/x-magento-init">
