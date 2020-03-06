@@ -69,6 +69,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * Get sender email name
+     *
+     * @return string
+     * @throws \Magento\Framework\Exception\MailException
+     */
+    public function getEmailSenderName()
+    {
+        $from = $this->scopeConfig->getValue(
+            self::XML_ADMIN_EMAIL_SENDER,
+            ScopeInterface::SCOPE_STORE
+        );
+        $result = $this->helperData->getSenderResolver()->resolve($from);
+        return $result['name'];
+    }
+
+    /**
      * Get new company account approval mail template
      *
      * @return string

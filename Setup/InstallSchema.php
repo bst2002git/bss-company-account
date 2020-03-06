@@ -71,6 +71,22 @@ class InstallSchema implements InstallSchemaInterface
                     'nullable' => false
                 ],
                 'Permissions'
+            )->addColumn(
+                'order_per_day',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'unsigned' => true
+                ],
+                'Number of order per day'
+            )->addColumn(
+                'max_order_amount',
+                Table::TYPE_DECIMAL,
+                '20,4',
+                [
+                    'nullable' => true
+                ],
+                'Max amount of order'
             )->setComment('Roles Table');
         $installer->getConnection()->createTable($table);
 
@@ -203,6 +219,60 @@ class InstallSchema implements InstallSchemaInterface
             )->setComment('Bss Sub User');
         $installer->getConnection()->createTable($table);
 
+        $table = $installer->getConnection()
+            ->newTable('bss_sub_user_order')
+            ->addColumn(
+                'entity_id',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'unsigned' => true,
+                    'identity' => true,
+                    'nullable' => false,
+                    'primary' => true
+                ],
+                'Sub user order identifier'
+            )->addColumn(
+                'sub_id',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'nullable' => false,
+                    'unsigned' => true
+                ],
+                'Sub user id'
+            )->addColumn(
+                'order_id',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'unsigned' => true
+                ],
+                'Order Id'
+            )->addColumn(
+                'grand_total',
+                Table::TYPE_DECIMAL,
+                '20,4',
+                [
+                    'nullable' => true
+                ],
+                'Grand total'
+            )->addIndex(
+                $installer->getIdxName('bss_sub_user_order', ['sub_id']),
+                ['sub_id']
+            )->addForeignKey(
+                $installer->getFkName(
+                    'bss_sub_user_order',
+                    'sub_id',
+                    'bss_sub_user',
+                    'sub_id'
+                ),
+                'sub_id',
+                $installer->getTable('bss_sub_user'),
+                'sub_id',
+                Table::ACTION_CASCADE
+            )->setComment('Sub User Order');
+        $installer->getConnection()->createTable($table);
         $installer->endSetup();
     }
 }

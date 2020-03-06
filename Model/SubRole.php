@@ -100,4 +100,46 @@ class SubRole extends AbstractModel implements SubRoleInterface
     {
         return $this->setData(self::TYPE, $typeStr);
     }
+
+    /**
+     * Get max order per day
+     *
+     * @return int|mixed
+     */
+    public function getMaxOrderPerDay()
+    {
+        return $this->getData(self::MAX_ORDER_PER_DAY);
+    }
+
+    /**
+     * Set max order per day
+     *
+     * @param int $number
+     * @return SubRole|void
+     */
+    public function setMaxOrderPerDay(int $number)
+    {
+        return $this->setData(self::MAX_ORDER_PER_DAY, $number);
+    }
+
+    /**
+     * Get max order amount
+     *
+     * @return float|mixed
+     */
+    public function getMaxOrderAmount()
+    {
+        return $this->getData(self::MAX_ORDER_AMOUNT);
+    }
+
+    /**
+     * Set max order amount
+     *
+     * @param float $number
+     * @return SubRole|void
+     */
+    public function setMaxOrderAmount(float $number)
+    {
+        return $this->setData(self::MAX_ORDER_AMOUNT, $number);
+    }
 }

@@ -30,6 +30,8 @@ interface SubRoleInterface
     const ID = 'role_id';
     const NAME = 'role_name';
     const TYPE = 'role_type';
+    const MAX_ORDER_PER_DAY = 'order_per_day';
+    const MAX_ORDER_AMOUNT = 'max_order_amount';
 
     /**
      * Get role id
@@ -75,4 +77,34 @@ interface SubRoleInterface
      * @return void
      */
     public function setRoleType(string $typeStr);
+
+    /**
+     * Get max order perday limit
+     *
+     * @return int
+     */
+    public function getMaxOrderPerDay();
+
+    /**
+     * Set number order per day
+     *
+     * @param int $number
+     * @return void
+     */
+    public function setMaxOrderPerDay(int $number);
+
+    /**
+     * Get max order amount
+     *
+     * @return float
+     */
+    public function getMaxOrderAmount();
+
+    /**
+     * Set max order amount
+     *
+     * @param float $number
+     * @return void
+     */
+    public function setMaxOrderAmount(float $number);
 }

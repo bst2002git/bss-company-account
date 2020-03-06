@@ -15,9 +15,22 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-?>
-<li class="bss-company-account">
-    <a href="https://example-links.com/register">
-		Create Company Account
-    </a>
-</li>
+namespace Bss\CompanyAccount\Helper;
+
+/**
+ * Class GetType
+ *
+ * @package Bss\CompanyAccount\Helper
+ */
+class GetType extends \Magento\Framework\App\Helper\AbstractHelper
+{
+    /**
+     * Get front end area
+     *
+     * @return string
+     */
+    public function getAreaFrontend()
+    {
+        return \Magento\Framework\App\Area::AREA_FRONTEND;
+    }
+}

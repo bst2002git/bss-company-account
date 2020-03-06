@@ -37,66 +37,50 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Version 1.0.0]]></comment>
                 </field>
-                <field id="apply_for_customer_group" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Apply For Customer Groups]]></label>
-                    <source_model>Magento\Customer\Model\Config\Source\Group</source_model>
-                    <comment><![CDATA[Auto set Company Account for Customer Groups]]></comment>
-                </field>
-                <field id="apply_for_selected_customer_group_action" translate="label comment" type="button" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Apply Selected Customer Groups]]></label>
-                    <frontend_model>Bss\CompanyAccount\Block\System\Config\Button</frontend_model>
-                    <comment><![CDATA[Apply to all customer account before install module]]></comment>
-                </field>
             </group>
 
-            <group id="ca_admin_email" translate="label" type="text" sortOrder="20" showInStore="1" showInWebsite="1" showInDefault="1">
-                <label><![CDATA[Company Admin Account Email Config]]></label>
-
-                <field id="approval" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Company Account Approval]]></label>
-                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
-                </field>
-
-                <field id="remove" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Company Account Remove]]></label>
-                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
-                </field>
-
-            </group>
-
-            <group id="subuser_email" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label><![CDATA[Sub User Account Email Config]]></label>
+            <group id="email" translate="label" type="text" sortOrder="20" showInStore="1" showInWebsite="1" showInDefault="1">
+                <depends>
+                    <field id="bss_company_account/general/enable">1</field>
+                </depends>
+                <label><![CDATA[Email Config]]></label>
 
                 <field id="email_sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Email Answer Customer Inquiry]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
                 </field>
 
-
-                <field id="invitation" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Sub User Invitation]]></label>
+                <field id="ca_approval" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Company Account Approval]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
-                <field id="send_invitation_copy_to" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Invitation Email Copy to]]></label>
+
+                <field id="ca_remove" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Company Account Remove]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="welcome" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="send_approvalremove_copy_to" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Send Approval/Remove Email Copy to]]></label>
+                </field>
+
+                <field id="subuser_confirmation" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Sub User Confirmation]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="subuser_welcome" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Welcome Sub User Notification]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
-                <field id="send_welcome_copy_to" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Welcome Email Copy to]]></label>
-                </field>
 
-                <field id="disabled" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="subuser_disabled" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Disabled Sub User Notification]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
-                <field id="send_disabled_copy_to" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Disabled Email Copy to]]></label>
-                </field>
+
             </group>
+
         </section>
     </system>
 </config>
