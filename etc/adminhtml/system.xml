@@ -50,31 +50,34 @@
                     <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
                 </field>
 
-                <field id="ca_approval" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="ca_approval" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Company Account Approval]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
+                <field id="send_approval_copy_to" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Send Approval Email Copy to]]></label>
+                </field>
 
-                <field id="ca_remove" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="ca_remove" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Company Account Remove]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="send_approvalremove_copy_to" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Approval/Remove Email Copy to]]></label>
+                <field id="send_remove_copy_to" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Send Remove Email Copy to]]></label>
                 </field>
 
-                <field id="subuser_confirmation" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="subuser_confirmation" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Sub User Confirmation]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="subuser_welcome" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="subuser_welcome" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Welcome Sub User Notification]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="subuser_disabled" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="subuser_disabled" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Disabled Sub User Notification]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>

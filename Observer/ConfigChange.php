@@ -52,8 +52,8 @@ class ConfigChange implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $params = $this->request->getParam('groups');
-        $applyCustomerGroups = $params[self::GENERAL]['fields'][self::APPLY_FOR]['value'];
-        return $this;
+//        $params = $this->request->getParam('groups');
+//        $applyCustomerGroups = $params[self::GENERAL]['fields'][self::APPLY_FOR]['value'];
+//        return $this;
     }
 }

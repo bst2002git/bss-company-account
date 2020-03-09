@@ -27,8 +27,12 @@ use Magento\Store\Model\ScopeInterface;
  */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const XML_ADMIN_EMAIL_SENDER = 'bss_company_account/subuser_email/email_sender';
-    const XML_PATH_COMPANY_ACCOUNT_APPROVAL_EMAIL_TEMPLATE = 'bss_company_account/ca_admin_email/approval';
+    const XML_PATH_ENABLED = 'bss_company_account/general/enable';
+    const XML_ADMIN_EMAIL_SENDER = 'bss_company_account/email/email_sender';
+    const XML_PATH_COMPANY_ACCOUNT_APPROVAL_EMAIL_TEMPLATE = 'bss_company_account/email/ca_approval';
+    const XML_PATH_COMPANY_ACCOUNT_REMOVE_EMAIL_TEMPLATE = 'bss_company_account/email/ca_remove';
+    const XML_PATH_APPROVAL_COPY_TO_EMAILS = 'bss_company_account/email/send_approval_copy_to';
+    const XML_PATH_REMOVE_COPY_TO_EMAILS = 'bss_company_account/email/send_remove_copy_to';
 
     /**
      * @var HelperData
@@ -50,6 +54,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->helperData = $helperData;
         $this->scopeConfig = $scopeConfig;
         parent::__construct($context);
+    }
+
+    /**
+     * @param null $store
+     * @return bool
+     */
+    public function isEnable($store = null)
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_ENABLED,
+            ScopeInterface::SCOPE_STORE,
+            $store
+        );
     }
 
     /**
@@ -93,6 +110,45 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->getValue(
             self::XML_PATH_COMPANY_ACCOUNT_APPROVAL_EMAIL_TEMPLATE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get new company account remove mail template
+     *
+     * @return string
+     */
+    public function getCompanyAccountRemoveEmailTemplate()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_COMPANY_ACCOUNT_REMOVE_EMAIL_TEMPLATE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get approval emails copy to
+     *
+     * @return string
+     */
+    public function getCaApprovalCopyToEmails()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_APPROVAL_COPY_TO_EMAILS,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get remove emails copy to
+     *
+     * @return string
+     */
+    public function getCaRemoveCopyToEmails()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_REMOVE_COPY_TO_EMAILS,
             ScopeInterface::SCOPE_STORE
         );
     }

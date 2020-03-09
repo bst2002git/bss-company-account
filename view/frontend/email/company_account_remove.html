@@ -16,10 +16,10 @@
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
  -->
-<!--@subject Welcome! Your account has been approved! @-->
+<!--@subject Welcome! Your account has been removed! @-->
 {{template config_path="design/email/header_template"}}
 <table>
-    <tr>{{trans "Hi %name," name=$varName}}</tr>
+    <tr>{{trans "Dear %name," name=$name}}</tr>
     <tr>Your account was removed from company account!</tr>
 </table>
 {{template config_path="design/email/footer_template"}}

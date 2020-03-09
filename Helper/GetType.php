@@ -17,6 +17,9 @@
  */
 namespace Bss\CompanyAccount\Helper;
 
+use Magento\Framework\App\Helper\Context;
+use Magento\Store\Model\StoreManager;
+
 /**
  * Class GetType
  *
@@ -25,6 +28,25 @@ namespace Bss\CompanyAccount\Helper;
 class GetType extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
+     * @var StoreManager
+     */
+    private $storeManager;
+
+    /**
+     * GetType constructor.
+     *
+     * @param StoreManager $storeManager
+     * @param Context $context
+     */
+    public function __construct(
+        StoreManager $storeManager,
+        Context $context
+    ) {
+        $this->storeManager = $storeManager;
+        parent::__construct($context);
+    }
+
+    /**
      * Get front end area
      *
      * @return string
@@ -32,5 +54,13 @@ class GetType extends \Magento\Framework\App\Helper\AbstractHelper
     public function getAreaFrontend()
     {
         return \Magento\Framework\App\Area::AREA_FRONTEND;
+    }
+
+    /**
+     * @return \Magento\Store\Model\StoreManagerInterface
+     */
+    public function getStoreManager()
+    {
+        return $this->storeManager;
     }
 }

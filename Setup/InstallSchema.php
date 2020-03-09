@@ -188,6 +188,16 @@ class InstallSchema implements InstallSchemaInterface
                     'unsigned' => true
                 ],
                 'Associated Company Account Quote Id'
+            )->addColumn(
+                'quote_status',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'nullable' => false,
+                    'unsigned' => true,
+                    'default' => 1
+                ],
+                'Quote status'
             )->addIndex(
                 $installer->getIdxName('bss_sub_user', ['customer_id']),
                 ['customer_id']

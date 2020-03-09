@@ -18,8 +18,8 @@
 namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Eav\Model\Entity\Collection\AbstractCollection;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
+use Magento\Eav\Model\Entity\Collection\AbstractCollection;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
 
@@ -30,27 +30,49 @@ use Magento\Ui\Component\MassAction\Filter;
  */
 class MassApprovedCompanyAccount extends \Magento\Customer\Controller\Adminhtml\Index\AbstractMassAction
 {
+    use SendMailTrait {
+        SendMailTrait::__construct as private __sendMailConstruct;
+    }
+    const CA_ATTRIBUTE = 'bss_is_company_account';
     const IS_COMPANY_ACCOUNT = 1;
 
     /**
      * @var CustomerRepositoryInterface
      */
     private $customerRepository;
+    /**
+     * @var \Bss\CompanyAccount\Helper\Data
+     */
+    private $helper;
+    /**
+     * @var \Bss\CompanyAccount\Helper\GetType
+     */
+    private $getType;
 
     /**
      * MassApprovedCompanyAccount constructor.
      *
      * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
+     * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
+     * @param \Bss\CompanyAccount\Helper\Data $helper
+     * @param \Bss\CompanyAccount\Helper\GetType $getType
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
      * @param CustomerRepositoryInterface $customerRepository
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
+        \Bss\CompanyAccount\Helper\Data $helper,
+        \Bss\CompanyAccount\Helper\GetType $getType,
         Filter $filter,
         CollectionFactory $collectionFactory,
         CustomerRepositoryInterface $customerRepository
     ) {
+        $this->__sendMailConstruct($inlineTranslation, $transportBuilder, $helper);
+        $this->getType = $getType;
         $this->customerRepository = $customerRepository;
         parent::__construct($context, $filter, $collectionFactory);
     }
@@ -64,20 +86,33 @@ class MassApprovedCompanyAccount extends \Magento\Customer\Controller\Adminhtml\
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         foreach ($collection->getAllIds() as $cid) {
             $customer = $this->customerRepository->getById($cid);
-            $customer->setCustomAttribute('bss_is_company_account', self::IS_COMPANY_ACCOUNT);
-            try {
-                $this->customerRepository->save($customer);
-                $updatedCustomerCount++;
-            } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage(__('Customer ID - %1: ' . $e->getMessage(), $cid));
+            $isCompanyAcc = (int)$customer
+                    ->getCustomAttribute(self::CA_ATTRIBUTE)->getValue() === self::IS_COMPANY_ACCOUNT;
+            if (!$isCompanyAcc) {
+                $customer->setCustomAttribute(self::CA_ATTRIBUTE, self::IS_COMPANY_ACCOUNT);
+                try {
+                    $this->customerRepository->save($customer);
+                    $this->sendMail(
+                        $customer->getEmail(),
+                        $this->helper->getCaApprovalCopyToEmails(),
+                        $this->helper->getCompanyAccountApprovalEmailTemplate(),
+                        [
+                            'area' => $this->getType->getAreaFrontend(),
+                            'store' => $this->getType->getStoreManager()->getStore()->getId(),
+                        ],
+                        [
+                            'name' => $customer->getPrefix() . ' ' . $customer->getLastname()
+                        ]
+                    );
+                    $updatedCustomerCount++;
+                } catch (\Exception $e) {
+                    $this->messageManager->addErrorMessage(__('Customer ID - %1: ' . $e->getMessage(), $cid));
+                }
             }
         }
+        $updatedCustomerCount ? $this->messageManager->addSuccessMessage(__('A total of %1 record(s) were updated.', $updatedCustomerCount)) :
+            $this->messageManager->addSuccessMessage(__('No record were updated'));
 
-        if ($updatedCustomerCount) {
-            // @codingStandardsIgnoreStart
-            $this->messageManager->addSuccessMessage(__('A total of %1 record(s) were updated.', $updatedCustomerCount));
-            // @codingStandardsIgnoreEnd
-        }
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setPath('customer/index/index');
 

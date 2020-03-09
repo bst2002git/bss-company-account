@@ -2,7 +2,7 @@
 "Company Account Approval","Company Account Approval"
 "Company Account Remove","Company Account Remove"
 "Sub User Confirmation","Sub User Confirmation"
-"Welcome Sub User Notification","Joined Sub User Notification"
+"Welcome Sub User Notification","Welcome Sub User Notification"
 "Disabled Sub User Notification","Disabled Sub User Notification"
 "Send Approval/Remove Email Copy to","Send Invitation Email Copy to"
 "Approval to Company Account","Change to Company Account"
@@ -11,7 +11,16 @@
 "Remove","Remove"
 "Opps... Some thing wrong! Please try again.","Opps... Some thing wrong! Please try again."
 
+"No record were updated","No record were updated"
+"A total of %1 record(s) were updated.","A total of %1 record(s) were updated."
+"Manage Role","Manage Role"
 "Manage Sub User","Manage Sub User"
 "Manage Roles and Permissions","Manage Roles and Permissions"
 "Add New Sub User","Add New Sub User"
+
+
+"Role Name","Role Name"
+"Role Type","Role Type"
+"Max Order Per Day","Max Order Per Day"
+"Max Order Amount","Max Order Amount"
 
