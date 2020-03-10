@@ -24,6 +24,28 @@ namespace Bss\CompanyAccount\Block\Adminhtml\Customer\Tab;
  */
 class ManageRole extends \Magento\Backend\Block\Template implements \Magento\Ui\Component\Layout\Tabs\TabInterface
 {
+    const IS_COMPANY_ACCOUNT = 1;
+
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
+    private $customerRepository;
+
+    /**
+     * ManageRole constructor.
+     *
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
+        \Magento\Backend\Block\Template\Context $context,
+        array $data = []
+    ) {
+        $this->customerRepository = $customerRepository;
+        parent::__construct($context, $data);
+    }
 
     /**
      * @inheritDoc
@@ -66,11 +88,21 @@ class ManageRole extends \Magento\Backend\Block\Template implements \Magento\Ui\
     }
 
     /**
-     * @inheritDoc
+     * Can show when customer is company account
+     *
+     * @return bool
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function canShowTab()
     {
-        return true;
+        $cid = $this->getRequest()->getParam('id');
+        $customer = $this->customerRepository->getById($cid);
+        $companyAccountAttr = $customer->getCustomAttribute('bss_is_company_account');
+        if ($companyAccountAttr) {
+            return (int)$companyAccountAttr->getValue() === self::IS_COMPANY_ACCOUNT;
+        }
+        return false;
     }
 
     /**

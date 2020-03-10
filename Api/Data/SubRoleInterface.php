@@ -32,6 +32,7 @@ interface SubRoleInterface
     const TYPE = 'role_type';
     const MAX_ORDER_PER_DAY = 'order_per_day';
     const MAX_ORDER_AMOUNT = 'max_order_amount';
+    const CUSTOMER_ID = 'customer_id';
 
     /**
      * Get role id

@@ -20,7 +20,7 @@ namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
 use Magento\Backend\App\Action;
 
 /**
- * Class ListRoles
+ * Class Index
  *
  * @package Bss\CompanyAccount\Controller\Adminhtml\Customer
  */

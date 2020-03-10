@@ -72,7 +72,8 @@ class InstallData implements InstallDataInterface
         $data = [
             Role::ID => 0,
             Role::NAME => 'admin',
-            Role::TYPE => '0'
+            Role::TYPE => '0',
+            Role::CUSTOMER_ID => null
         ];
 
         $setup->getConnection()->insertForce($setup->getTable('bss_sub_role'), $data);

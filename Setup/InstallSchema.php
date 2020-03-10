@@ -87,6 +87,29 @@ class InstallSchema implements InstallSchemaInterface
                     'nullable' => true
                 ],
                 'Max amount of order'
+            )->addColumn(
+                'customer_id',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'nullable' => true,
+                    'unsigned' => true
+                ],
+                'Create by company account'
+            )->addIndex(
+                $installer->getIdxName('bss_sub_role', ['customer_id']),
+                ['customer_id']
+            )->addForeignKey(
+                $installer->getFkName(
+                    'bss_sub_role',
+                    'customer_id',
+                    'customer_entity',
+                    'entity_id'
+                ),
+                'customer_id',
+                $installer->getTable('customer_entity'),
+                'entity_id',
+                Table::ACTION_CASCADE
             )->setComment('Roles Table');
         $installer->getConnection()->createTable($table);
 
@@ -214,17 +237,6 @@ class InstallSchema implements InstallSchemaInterface
                 'customer_id',
                 $installer->getTable('customer_entity'),
                 'entity_id',
-                Table::ACTION_CASCADE
-            )->addForeignKey(
-                $installer->getFkName(
-                    'bss_sub_user',
-                    'role_id',
-                    'bss_sub_role',
-                    'role_id'
-                ),
-                'role_id',
-                $installer->getTable('bss_sub_role'),
-                'role_id',
                 Table::ACTION_CASCADE
             )->setComment('Bss Sub User');
         $installer->getConnection()->createTable($table);
