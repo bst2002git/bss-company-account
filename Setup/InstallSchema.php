@@ -113,6 +113,17 @@ class InstallSchema implements InstallSchemaInterface
             )->setComment('Roles Table');
         $installer->getConnection()->createTable($table);
 
+        $installer->getConnection()->addIndex(
+            $installer->getTable('bss_sub_role'),
+            $setup->getIdxName(
+                $installer->getTable('bss_sub_role'),
+                ['role_name', 'role_type'],
+                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+            ),
+            ['role_name', 'role_type'],
+            \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+        );
+
         $table = $installer->getConnection()
             ->newTable($installer->getTable('bss_sub_user'))
             ->addColumn(
@@ -240,6 +251,17 @@ class InstallSchema implements InstallSchemaInterface
                 Table::ACTION_CASCADE
             )->setComment('Bss Sub User');
         $installer->getConnection()->createTable($table);
+
+        $installer->getConnection()->addIndex(
+            $installer->getTable('bss_sub_user'),
+            $setup->getIdxName(
+                $installer->getTable('bss_sub_user'),
+                ['sub_name', 'sub_email'],
+                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+            ),
+            ['sub_name', 'sub_email'],
+            \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+        );
 
         $table = $installer->getConnection()
             ->newTable('bss_sub_user_order')

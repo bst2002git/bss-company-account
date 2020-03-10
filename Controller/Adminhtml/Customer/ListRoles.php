@@ -23,31 +23,48 @@ use Magento\Backend\App\Action;
  * Class Index
  *
  * @package Bss\CompanyAccount\Controller\Adminhtml\Customer
+ *
+ * @SuppressWarnings(PHPMD.AllPurposeAction)
  */
 class ListRoles extends Action
 {
-    /**
-     * @var \Magento\Framework\View\Result\LayoutFactory
-     */
-    private $resultLayoutFactory;
+    /** @var \Magento\Framework\View\Result\PageFactory */
+    protected $resultPageFactory;
 
+    /**
+     * ListRoles constructor.
+     *
+     * @param Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     */
     public function __construct(
-        Action\Context $context,
-        \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
-        $this->resultLayoutFactory = $resultLayoutFactory;
+        $this->resultPageFactory = $resultPageFactory;
     }
 
     /**
-     * Customer compare grid
+     * Execute action
      *
-     * @return \Magento\Framework\View\Result\Layout
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
      */
     public function execute()
     {
-        $resultLayout = $this->resultLayoutFactory->create();
-        $resultLayout->getLayout()->getBlock('customer.edit.tab.roles');
-        return $resultLayout;
+        $resultPage = $this->resultPageFactory->create();
+        $resultPage->getConfig()->getTitle()->prepend((__('Manage Role')));
+
+        return $resultPage;
+    }
+
+    /**
+     * Can access
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Bss_CompanyAccount::config_section');
     }
 }

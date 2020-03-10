@@ -187,6 +187,7 @@ class ManageRole extends Extended
         $this->getMassactionBlock()->addItem('delete', [
             'label'    => __('Delete'),
             'url'      => $this->getUrl('*/*/massDeleteRoles'),
+            'confirm' => __('Are you sure?')
         ]);
         return $this;
     }

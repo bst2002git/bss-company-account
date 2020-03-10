@@ -15,7 +15,7 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
+namespace Bss\CompanyAccount\Helper;
 
 /**
  * Trait SendMailTrait

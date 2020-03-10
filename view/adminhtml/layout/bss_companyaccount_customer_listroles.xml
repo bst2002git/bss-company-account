@@ -19,8 +19,13 @@
  -->
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
-    <container name="root" label="Root">
-        <block class="Bss\CompanyAccount\Block\Adminhtml\Customer\Tab\View\ManageRole"
-               name="customer.edit.tab.roles"/>
-    </container>
+    <update handle="styles"/>
+    <referenceContainer name="content">
+        <uiComponent name="bss_companyaccount_customer_listroles_listing"/>
+    </referenceContainer>
+
+<!--    <container name="root" label="Root">-->
+<!--        <block class="Bss\CompanyAccount\Block\Adminhtml\Customer\Tab\View\ManageRole"-->
+<!--               name="customer.edit.tab.roles"/>-->
+<!--    </container>-->
 </layout>

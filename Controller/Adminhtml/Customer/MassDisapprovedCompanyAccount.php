@@ -22,6 +22,7 @@ use Magento\Eav\Model\Entity\Collection\AbstractCollection;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
+use Bss\CompanyAccount\Helper\SendMailTrait;
 
 /**
  * Class MassApprovedCompanyAccount

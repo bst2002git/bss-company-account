@@ -21,12 +21,13 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="customer_form">
-            <block ifconfig="bss_company_account/general/enable" class="Bss\CompanyAccount\Block\Adminhtml\Customer\Tab\ManageRole" name="customertab_panel">
-                <arguments>
-                    <argument name="tab_label" xsi:type="string" translate="true">Manage Role</argument>
-                    <argument name="sort_order" xsi:type="number">100</argument>
-                </arguments>
-            </block>
+<!--            <uiComponent name="customer_form_test"/>-->
+<!--            <block ifconfig="bss_company_account/general/enable" class="Bss\CompanyAccount\Block\Adminhtml\Customer\Tab\ManageRole" name="customertab_panel">-->
+<!--                <arguments>-->
+<!--                    <argument name="tab_label" xsi:type="string" translate="true">Manage Role</argument>-->
+<!--                    <argument name="sort_order" xsi:type="number">100</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
         </referenceBlock>
     </body>
 </page>
