@@ -51,10 +51,10 @@ class SubRole extends AbstractModel implements SubRoleInterface
     /**
      * Set role id
      *
-     * @param int $id
+     * @param int|null $id
      * @return SubRole
      */
-    public function setRoleId(int $id)
+    public function setRoleId($id)
     {
         return $this->setData(self::ID, $id);
     }
@@ -141,5 +141,26 @@ class SubRole extends AbstractModel implements SubRoleInterface
     public function setMaxOrderAmount(float $number)
     {
         return $this->setData(self::MAX_ORDER_AMOUNT, $number);
+    }
+
+    /**
+     * Get related company account
+     *
+     * @return int|mixed
+     */
+    public function getCompanyAccount()
+    {
+        return $this->getData(self::CUSTOMER_ID);
+    }
+
+    /**
+     * Associate to a company account
+     *
+     * @param int $id
+     * @return SubRole|mixed
+     */
+    public function setCompanyAccount(int $id)
+    {
+        return $this->setData(self::CUSTOMER_ID, $id);
     }
 }

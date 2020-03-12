@@ -93,7 +93,8 @@ class SubRoleRepository implements SubRoleRepositoryInterface
      */
     public function save(SubRoleInterface $role)
     {
-        return $this->roleResource->save($role);
+        $role = $this->roleResource->save($role);
+        return $role;
     }
 
     /**

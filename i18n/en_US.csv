@@ -17,10 +17,24 @@
 "Manage Sub User","Manage Sub User"
 "Manage Roles and Permissions","Manage Roles and Permissions"
 "Add New Sub User","Add New Sub User"
+"Add New Role","Add New Role"
+"Add/Update Role","Add/Update Role"
 
 
 "Role Name","Role Name"
 "Role Type","Role Type"
 "Max Order Per Day","Max Order Per Day"
 "Max Order Amount","Max Order Amount"
+
+"View Account Dashboard","View Account Dashboard"
+"View Downloadable Product","View Downloadable Product"
+"View & Add Account Wishlists","View & Add Account Wishlists"
+"View & Add Address Book","View & Add Address Book"
+"View Stored Payment Method","View Stored Payment Method"
+"Manage Sub User","Manage Sub User"
+"View All Order","View All Order"
+"View Report","View Report"
+
+"Role has been updated.","Role has been updated."
+"New role has been added.","New role has been added."
 

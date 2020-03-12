@@ -35,6 +35,21 @@ interface SubRoleInterface
     const CUSTOMER_ID = 'customer_id';
 
     /**
+     * Get related company account
+     *
+     * @return int
+     */
+    public function getCompanyAccount();
+
+    /**
+     * Associate to a company account
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function setCompanyAccount(int $id);
+
+    /**
      * Get role id
      *
      * @return int
@@ -44,10 +59,10 @@ interface SubRoleInterface
     /**
      * Set role id
      *
-     * @param int $id
+     * @param int|null $id
      * @return void
      */
-    public function setRoleId(int $id);
+    public function setRoleId($id);
 
     /**
      * Get role name

@@ -28,32 +28,18 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-<!--                <item name="customer_listing_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>-->
-<!--                <item name="customer_online_grid_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Online\Grid\Collection</item>-->
-<!--                <item name="customer_group_listing_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Group\Grid\Collection</item>-->
-                <item name="bss_companyaccount_customer_listroles_listing_data_source" xsi:type="string">
-                    Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection
-                </item>
+                <item name="bss_companyaccount_customer_listroles_listing_data_source" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <type name="Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection">
+
+    <virtualType name="Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">bss_sub_role</argument>
-            <argument name="eventPrefix" xsi:type="string">bss_companyaccount_grid_collection</argument>
-            <argument name="eventObject" xsi:type="string">role_id_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubRole</argument>
         </arguments>
-    </type>
-
-<!--    <virtualType name="Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">-->
-<!--        <arguments>-->
-<!--            <argument name="mainTable" xsi:type="string">bss_sub_role</argument>-->
-<!--            <argument name="resourceModel" xsi:type="string">-->
-<!--                Bss\CompanyAccount\Model\ResourceModel\SubRole-->
-<!--            </argument>-->
-<!--        </arguments>-->
-<!--    </virtualType>-->
+    </virtualType>
 
     <!--  Api company account  -->
     <preference for="Bss\CompanyAccount\Api\SubRoleRepositoryInterface"

@@ -14,7 +14,7 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 /**
  * Class getting collection of addresses assigned to customer
  */
-class Collection extends AbstractCollection implements SearchResultInterface
+class Collection2 extends AbstractCollection implements SearchResultInterface
 {
     /**
      * @var AggregationInterface
@@ -143,15 +143,17 @@ class Collection extends AbstractCollection implements SearchResultInterface
     }
 
 
+//// Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection;
 //    protected function _beforeLoad()
 //    {
+//        dd($this->context->getRequestParams());
 //        $this->addFieldToFilter(
 //            [
 //                \Bss\CompanyAccount\Api\Data\SubRoleInterface::CUSTOMER_ID,
 //                \Bss\CompanyAccount\Api\Data\SubRoleInterface::CUSTOMER_ID
 //            ],
 //            [
-//                ["eq" => (int)$this->cid],
+//                ["eq" => (int)12],
 //                ["null" => true]
 //            ]
 //        );

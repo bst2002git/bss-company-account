@@ -18,22 +18,20 @@
  */
  -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-
     <fieldset name="bss_company_account_manage_role" class="Bss\CompanyAccount\Ui\Component\Customer\Form\ManageRoleFieldSet">
         <settings>
             <collapsible>false</collapsible>
             <label translate="true">Manage Role</label>
             <componentType>fieldset</componentType>
             <additionalClasses>
-                <class name="customer-manage-role-form">true</class>
-                <class name="customer-address-form">true</class>
+                <class name="customer-ca-roles-form">true</class>
             </additionalClasses>
         </settings>
-        <button name="add_address" component="Magento_Customer/js/address/default-address">
+        <button name="add_role" component="Bss_CompanyAccount/js/role/default-role">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="formElement" xsi:type="string">container</item>
-                    <item name="buttonClasses" xsi:type="string">add-new-address-button</item>
+                    <item name="buttonClasses" xsi:type="string">add-new-role-button</item>
                     <item name="actions" xsi:type="array">
                         <item name="0" xsi:type="array">
                             <item name="targetName" xsi:type="string">${ $.parentName}.bss_companyaccount_customer_listroles_update_modal.update_bss_companyaccount_customer_listroles_form_loader</item>
@@ -51,23 +49,23 @@
                 </item>
             </argument>
             <settings>
-                <title translate="true">Add New Address</title>
+                <title translate="true">Add New Role</title>
                 <imports>
-                    <link name="parentId">${ $.provider}:data.role_id</link>
+                    <link name="customerId">${ $.provider}:data.customer_id</link>
                 </imports>
             </settings>
         </button>
         <modal name="bss_companyaccount_customer_listroles_update_modal">
             <settings>
                 <options>
-                    <option name="title" xsi:type="string">Add/Update Role</option>
+                    <option name="title" xsi:type="string" translate="true">Add/Update Role</option>
                 </options>
             </settings>
-            <insertForm name="update_bss_companyaccount_customer_listroles_form_loader" component="Magento_Customer/js/form/components/insert-form">
+            <insertForm name="update_bss_companyaccount_customer_listroles_form_loader" component="Bss_CompanyAccount/js/form/components/insert-form">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="addressListingProvider" xsi:type="string">ns = bss_companyaccount_customer_listroles_listing, index = bss_companyaccount_customer_listroles_listing</item>
-                        <item name="addressModalProvider" xsi:type="string">${ $.parentName }</item>
+                        <item name="roleListingProvider" xsi:type="string">ns = bss_companyaccount_customer_listroles_listing, index = bss_companyaccount_customer_listroles_listing</item>
+                        <item name="roleModalProvider" xsi:type="string">${ $.parentName }</item>
                     </item>
                 </argument>
                 <settings>
@@ -76,7 +74,7 @@
                         <param name="handle">bss_companyaccount_customer_listroles_edit</param>
                         <param name="buttons">1</param>
                     </renderUrl>
-                    <loading>false</loading>
+                    <loading>true</loading>
                     <toolbarContainer>${ $.parentName }</toolbarContainer>
                     <externalProvider>${ $.ns }.bss_companyaccount_customer_listroles_form_data_source</externalProvider>
                     <ns>bss_companyaccount_customer_listroles_form</ns>
@@ -85,7 +83,7 @@
                     </exports>
                     <imports>
                         <link name="parentId">${ $.provider}:data.role_id</link>
-                        <link name="onAddressDelete">${ $.ns }.${ $.ns }:deleteRoleAction</link>
+                        <link name="onRoleDelete">${ $.ns }.${ $.ns }:deleteRoleAction</link>
                     </imports>
                 </settings>
             </insertForm>
