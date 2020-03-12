@@ -17,7 +17,9 @@
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
  -->
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd" component="Magento_Customer/js/form/components/form">
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd"
+      component="Bss_CompanyAccount/js/role/form/components/form">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">bss_companyaccount_customer_listroles_form.bss_companyaccount_customer_listroles_form_data_source</item>
@@ -33,7 +35,7 @@
         <buttons>
             <button name="cancel" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\CancelButton"/>
             <button name="delete" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\DeleteButton"/>
-            <button name="save" class="Magento\Customer\Block\Adminhtml\Edit\Address\SaveButton"/>
+            <button name="save" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\SaveButton"/>
         </buttons>
         <namespace>bss_companyaccount_customer_listroles_form</namespace>
         <ajaxSave>true</ajaxSave>
@@ -51,7 +53,6 @@
         </argument>
         <settings>
             <submitUrl path="bss_companyaccount/customer_role/save"/>
-<!--            <validateUrl path="bss_companyaccount/customer_role/validate"/>-->
         </settings>
         <aclResource>Bss_CompanyAccount::config_section</aclResource>
         <dataProvider class="Bss\CompanyAccount\Model\SubRole\DataProvider" name="bss_companyaccount_customer_listroles_form_data_source">
@@ -127,6 +128,7 @@
                 <visible>true</visible>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
                 </validation>
             </settings>
         </field>
@@ -138,6 +140,7 @@
                 <visible>true</visible>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
                 </validation>
             </settings>
         </field>

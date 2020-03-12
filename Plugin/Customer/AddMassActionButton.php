@@ -52,7 +52,7 @@ class AddMassActionButton
     }
 
     /**
-     * Add massaction button
+     * Add mass action button when module is enable or user have access to module
      *
      * @param MassAction $object
      * @param $result

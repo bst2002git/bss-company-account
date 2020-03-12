@@ -35,6 +35,22 @@
 "View All Order","View All Order"
 "View Report","View Report"
 
+"Are you sure you want to delete this role?","Are you sure you want to delete this role?"
 "Role has been updated.","Role has been updated."
 "New role has been added.","New role has been added."
+"You deleted the role.","You deleted the role."
+"We can't delete the role right now.","We can't delete the role right now."
+"We can't save role right now.","We can't save role right now."
+"Sorry, there has been an error processing your request. Please try again later.","Sorry, there has been an error processing your request. Please try again later."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"We can't mass delete the roles right now.","We can't mass delete the roles right now."
+
+"Manage Sub-user","Manage Sub-user"
+"Add New Sub-user","Add New Sub-user"
+"Add/Update Sub-user","Add/Update Sub-user"
+
+"Status","Status"
+"Email","Email"
+"Role","Role"
+
 

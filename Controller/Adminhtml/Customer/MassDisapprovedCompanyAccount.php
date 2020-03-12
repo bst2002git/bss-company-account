@@ -17,6 +17,7 @@
  */
 namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
 
+use Bss\CompanyAccount\Model\Config\Source\CompanyAccountValue;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Eav\Model\Entity\Collection\AbstractCollection;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
@@ -35,8 +36,6 @@ class MassDisapprovedCompanyAccount extends \Magento\Customer\Controller\Adminht
         SendMailTrait::__construct as private __sendMailConstruct;
     }
     const CA_ATTRIBUTE = 'bss_is_company_account';
-    const IS_NORMAL_CUSTOMER = 0;
-    const IS_COMPANY_ACCOUNT = 1;
 
     /**
      * @var CustomerRepositoryInterface
@@ -85,9 +84,9 @@ class MassDisapprovedCompanyAccount extends \Magento\Customer\Controller\Adminht
         foreach ($collection->getAllIds() as $cid) {
             $customer = $this->customerRepository->getById($cid);
             $isCompanyAcc = (int)$customer
-                ->getCustomAttribute(self::CA_ATTRIBUTE)->getValue() === self::IS_COMPANY_ACCOUNT;
+                ->getCustomAttribute(self::CA_ATTRIBUTE)->getValue() === CompanyAccountValue::IS_COMPANY_ACCOUNT;
             if ($isCompanyAcc) {
-                $customer->setCustomAttribute('bss_is_company_account', self::IS_NORMAL_CUSTOMER);
+                $customer->setCustomAttribute(self::CA_ATTRIBUTE, CompanyAccountValue::IS_NORMAL_ACCOUNT);
                 try {
                     $this->sendMail(
                         $customer->getEmail(),

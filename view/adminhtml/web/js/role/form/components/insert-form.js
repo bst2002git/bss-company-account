@@ -46,17 +46,16 @@ define([
         },
 
         /**
-         * Event method that closes "Edit customer address" modal and refreshes grid after customer address
-         * was removed through "Delete" button on the "Edit customer address" modal
+         * Event method that closes "Edit role" modal and refreshes grid after role
+         * was removed through "Delete" button on the "Edit role" modal
          *
-         * @param {String} id - customer address ID to delete
+         * @param {String} id - role ID to delete
          */
         onRoleDelete: function (id) {
             this.roleModal().closeModal();
             this.roleListing().reload({
                 refresh: true
             });
-            this.roleListing()._delete([parseFloat(id)]);
         }
     });
 });

@@ -129,7 +129,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      */
     public function getCompanyCustomerId()
     {
-        return $this->getData(self::COMPANY_CUSTOMER_ID);
+        return $this->getData(self::CUSTOMER_ID);
     }
 
     /**
@@ -140,7 +140,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      */
     public function setCompanyCustomerId(int $id)
     {
-        return $this->setData(self::COMPANY_CUSTOMER_ID, $id);
+        return $this->setData(self::CUSTOMER_ID, $id);
     }
 
     /**

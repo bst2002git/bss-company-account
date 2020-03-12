@@ -28,7 +28,7 @@ interface SubUserInterface
      * Constants for keys of data array.
      */
     const ID = 'sub_id';
-    const COMPANY_CUSTOMER_ID = 'customer_id';
+    const CUSTOMER_ID = 'customer_id';
     const NAME = 'sub_name';
     const EMAIL = 'sub_email';
     const PASSWORD = 'sub_password';

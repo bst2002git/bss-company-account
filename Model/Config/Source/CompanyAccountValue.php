@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?php
 /**
  * BSS Commerce Co.
  *
@@ -16,12 +15,15 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
--->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="styles"/>
-    <body>
-        <referenceContainer name="content">
-            <uiComponent name="bss_companyaccount_customer_listroles_form"/>
-        </referenceContainer>
-    </body>
-</page>
+namespace Bss\CompanyAccount\Model\Config\Source;
+
+/**
+ * Class CompanyAccountValue
+ *
+ * @package Bss\CompanyAccount\Model\Config\Source
+ */
+class CompanyAccountValue
+{
+    const IS_COMPANY_ACCOUNT = 1;
+    const IS_NORMAL_ACCOUNT = 0;
+}

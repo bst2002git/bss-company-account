@@ -34,11 +34,11 @@ define([
          */
         applyAction: function (action) {
             if (action.params && action.params[0]) {
-                action.params[0]['role_id'] = this.entityId;
+                action.params[0]['sub_id'] = this.entityId;
                 action.params[0]['customer_id'] = this.customerId;
             } else {
                 action.params = [{
-                    'role_id': this.entityId,
+                    'sub_id': this.entityId,
                     'customer_id': this.customerId
                 }];
             }

@@ -1,13 +1,27 @@
 <?php
-
+declare(strict_types=1);
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CompanyAccount
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
 namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\Role;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 use Bss\CompanyAccount\Api\Data\SubRoleInterface as Role;
 
@@ -72,7 +86,7 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Save customer address action
+     * Save role action
      *
      * @return Json
      */
@@ -87,9 +101,9 @@ class Save extends Action implements HttpPostActionInterface
             $role = $this->roleFactory->create();
             $role->setRoleName($this->getRequest()->getParam(Role::NAME));
             $role->setRoleType(implode(',', $this->getRequest()->getParam(Role::TYPE)));
-            $role->setMaxOrderPerDay($this->getRequest()->getParam(Role::MAX_ORDER_PER_DAY));
-            $role->setMaxOrderAmount($this->getRequest()->getParam(Role::MAX_ORDER_AMOUNT));
-            $role->setCompanyAccount($customerId);
+            $role->setMaxOrderPerDay((int)$this->getRequest()->getParam(Role::MAX_ORDER_PER_DAY));
+            $role->setMaxOrderAmount((int)$this->getRequest()->getParam(Role::MAX_ORDER_AMOUNT));
+            $role->setCompanyAccount((int)$customerId);
 
             if (!empty($roleId)) {
                 $role->setRoleId((int)$roleId);
@@ -100,10 +114,9 @@ class Save extends Action implements HttpPostActionInterface
             }
 
             $this->roleRepository->save($role);
-
         } catch (\Exception $e) {
             $error = true;
-            $message = __('We can\'t change role right now.');
+            $message = __('We can\'t save role right now.');
             $this->logger->critical($e);
         }
 

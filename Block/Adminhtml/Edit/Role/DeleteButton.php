@@ -47,7 +47,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
                                 [
                                     'targetName' => 'bss_companyaccount_customer_listroles_form.'
                                         . 'bss_companyaccount_customer_listroles_form',
-                                    'actionName' => 'deleteAddress',
+                                    'actionName' => 'deleteRole',
                                     'params' => [
                                         $this->getDeleteUrl(),
                                     ],

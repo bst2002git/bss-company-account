@@ -15,7 +15,7 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
+namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\Role;
 
 use Magento\Backend\App\Action;
 
@@ -52,6 +52,7 @@ class ListRoles extends Action
      */
     public function execute()
     {
+        dd(1);
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend((__('Manage Role')));
 

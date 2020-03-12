@@ -74,7 +74,7 @@ class SubRoleRepository implements SubRoleRepositoryInterface
      * Get role by id
      *
      * @param int $id
-     * @return \Bss\CompanyAccount\Api\Data\SubRoleInterface
+     * @return SubRoleInterface
      */
     public function getById(int $id)
     {
@@ -101,7 +101,7 @@ class SubRoleRepository implements SubRoleRepositoryInterface
      * Retrieve roles matching the specified criteria
      *
      * @param SearchCriteriaInterface $criteria
-     * @return \Bss\CompanyAccount\Api\Data\SubRoleSearchResultsInterface
+     * @return \Bss\CompanyAccount\Api\Data\SubRoleSearchResultsInterface|\Magento\Framework\Api\SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria)
     {
@@ -130,7 +130,11 @@ class SubRoleRepository implements SubRoleRepositoryInterface
     }
 
     /**
-     * @inheritDoc
+     * Delete role by id
+     *
+     * @param int $id
+     * @return bool|RoleResource
+     * @throws \Exception
      */
     public function deleteById(int $id)
     {

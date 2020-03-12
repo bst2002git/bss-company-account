@@ -22,17 +22,19 @@ use Magento\Framework\View\Element\ComponentVisibilityInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 
 /**
- * Class ManageRoleFieldSet
+ * Class ManageSubUserFieldSet
  *
  * @package Bss\CompanyAccount\Ui\Component\Customer\Form
  */
-class ManageRoleFieldSet extends \Magento\Ui\Component\Form\Fieldset implements ComponentVisibilityInterface
+class ManageSubUserFieldSet extends \Magento\Ui\Component\Form\Fieldset implements ComponentVisibilityInterface
 {
     use CheckCompanyAccountTrait {
         CheckCompanyAccountTrait::__construct as private __checkCaConstruct;
     }
 
     /**
+     * ManageSubUserFieldSet constructor.
+     *
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param ContextInterface $context
      * @param array $components
@@ -52,9 +54,9 @@ class ManageRoleFieldSet extends \Magento\Ui\Component\Form\Fieldset implements 
     /**
      * Can show manage role tab in tabs or not
      *
-     * Will return false for not is company account
+     * Return true if customer is company account
      *
-     * @return boolean
+     * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */

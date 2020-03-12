@@ -21,71 +21,81 @@ namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\Role;
 use Bss\CompanyAccount\Api\SubRoleRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Controller\Result\Json;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class Delete
- *
- * @package Bss\CompanyAccount\Controller\Adminhtml\Customer\Role
+ * Class to delete selected role through massaction
  */
-class Delete extends Action implements HttpPostActionInterface
+class MassDelete extends Action implements HttpPostActionInterface
 {
     /**
      * Authorization level of a basic admin session
      *
-     * @see _isAllowed()
+     * @see MassDelete::_isAllowed()
      */
-    public const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
+    const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var JsonFactory
+     */
+    private $resultJsonFactory;
     /**
      * @var SubRoleRepositoryInterface
      */
     private $roleRepository;
 
     /**
-     * @var LoggerInterface
-     */
-    private $logger;
-    /**
-     * @var JsonFactory
-     */
-    private $resultJsonFactory;
-
-    /**
-     * Delete constructor.
-     *
-     * @param SubRoleRepositoryInterface $roleRepository
+     * @param Context $context
      * @param LoggerInterface $logger
+     * @param SubRoleRepositoryInterface $roleRepository
      * @param JsonFactory $resultJsonFactory
-     * @param Action\Context $context
      */
     public function __construct(
-        SubRoleRepositoryInterface $roleRepository,
+        Context $context,
         LoggerInterface $logger,
-        JsonFactory $resultJsonFactory,
-        Action\Context $context
+        SubRoleRepositoryInterface $roleRepository,
+        JsonFactory $resultJsonFactory
     ) {
-        $this->roleRepository = $roleRepository;
         $this->logger = $logger;
+        $this->roleRepository = $roleRepository;
         $this->resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
     }
 
     /**
-     * Delete role action
+     * Delete specified roles using grid massaction
+     *
+     * @return Json
+     * @throws \Exception
      */
-    public function execute()
+    public function execute(): Json
     {
         $error = false;
+        $updatedRoleCount = 0;
+
         try {
-            $roleId = $this->getRequest()->getParam('id');
-            $this->roleRepository->deleteById((int)$roleId);
-            $message = __('You deleted the role.');
+            $roles = $this->getRequest()->getParam('selected');
+            foreach ($roles as $roleId) {
+                if ((int)$roleId !== 0) {
+                    $this->roleRepository->deleteById((int)$roleId);
+                    $updatedRoleCount++;
+                }
+            }
+            $message = __('A total of %1 record(s) have been deleted.', $updatedRoleCount);
         } catch (\Exception $e) {
-            $message = __('We can\'t delete the role right now.');
+            $message = __('We can\'t mass delete the roles right now.');
+            $error = true;
             $this->logger->critical($e);
         }
+
         $resultJson = $this->resultJsonFactory->create();
         $resultJson->setData(
             [

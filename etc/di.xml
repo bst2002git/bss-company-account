@@ -29,6 +29,7 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="bss_companyaccount_customer_listroles_listing_data_source" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\Collection</item>
+                <item name="bss_companyaccount_customer_subuser_listing_data_source" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubUser\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -38,6 +39,14 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">bss_sub_role</argument>
             <argument name="resourceModel" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubRole</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Bss\CompanyAccount\Model\ResourceModel\SubUser\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_sub_user</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\CompanyAccount\Model\ResourceModel\SubUser</argument>
         </arguments>
     </virtualType>
 

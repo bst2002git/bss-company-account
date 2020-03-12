@@ -21,85 +21,57 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">bss_companyaccount_customer_listroles_listing.bss_companyaccount_customer_listroles_listing_data_source</item>
-            <item name="deps" xsi:type="string">bss_companyaccount_customer_listroles_listing.bss_companyaccount_customer_listroles_listing_data_source</item>
+            <item name="provider" xsi:type="string">bss_companyaccount_customer_subuser_listing.bss_companyaccount_customer_subuser_listing_data_source</item>
+            <item name="deps" xsi:type="string">bss_companyaccount_customer_subuser_listing.bss_companyaccount_customer_subuser_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Role</item>
+                <item name="label" xsi:type="string" translate="true">Add New Sub-user</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item>
             </item>
         </item>
     </argument>
+
     <settings>
-        <spinner>bss_companyaccount_customer_listroles_columns</spinner>
+        <spinner>bss_companyaccount_customer_subuser_columns</spinner>
         <deps>
-            <dep>bss_companyaccount_customer_listroles_listing.bss_companyaccount_customer_listroles_listing_data_source</dep>
+            <dep>bss_companyaccount_customer_subuser_listing.bss_companyaccount_customer_subuser_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="bss_companyaccount_customer_listroles_listing_data_source" component="Magento_Ui/js/grid/provider">
+
+    <dataSource name="bss_companyaccount_customer_subuser_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <filterUrlParams>
                 <param name="id">*</param>
             </filterUrlParams>
             <storageConfig>
-                <param name="indexField" xsi:type="string">role_id</param>
+                <param name="indexField" xsi:type="string">sub_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
         <aclResource>Bss_CompanyAccount::config_section</aclResource>
-        <dataProvider class="Bss\CompanyAccount\Ui\Component\Listing\Role\DataProvider" name="bss_companyaccount_customer_listroles_listing_data_source">
+        <dataProvider class="Bss\CompanyAccount\Ui\Component\Listing\SubUser\DataProvider" name="bss_companyaccount_customer_subuser_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
-                <primaryFieldName>role_id</primaryFieldName>
+                <primaryFieldName>sub_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
-    <listingToolbar name="listing_top">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="sticky" xsi:type="boolean">false</item>
-            </item>
-        </argument>
-        <bookmark name="bookmarks"/>
-        <columnsControls name="columns_controls"/>
-        <exportButton name="export_button"/>
-        <filters name="listing_filters" />
-        <filterSearch name="fulltext"/>
-        <massaction name="listing_massaction" component="Magento_Customer/js/grid/massactions">
-            <action name="delete">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="isAjax" xsi:type="boolean">true</item>
-                    </item>
-                </argument>
-                <settings>
-                    <url path="bss_companyaccount/customer_role/massDelete"/>
-                    <type>delete</type>
-                    <label translate="true">Delete</label>
-                    <confirm>
-                        <message translate="true">Are you sure you wan't to delete selected items?</message>
-                        <title translate="true">Delete Role</title>
-                    </confirm>
-                </settings>
-            </action>
-        </massaction>
-        <paging name="listing_paging"/>
-    </listingToolbar>
+
     <columns name="spinner_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">role_id</item>
+                    <item name="indexField" xsi:type="string">sub_id</item>
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="role_id">
+        <column name="sub_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -108,7 +80,7 @@
                 </item>
             </argument>
         </column>
-        <column name="role_name">
+        <column name="sub_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -122,7 +94,7 @@
                 </item>
             </argument>
         </column>
-        <column name="role_type">
+        <column name="sub_status">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -132,35 +104,21 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Permissions</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
                 </item>
             </argument>
         </column>
-        <column name="order_per_day">
+        <column name="sub_email">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="filter" xsi:type="string">text</item>
                     <item name="editor" xsi:type="array">
                         <item name="editorType" xsi:type="string">text</item>
                         <item name="validation" xsi:type="array">
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Max Order Per Day</item>
-                </item>
-            </argument>
-        </column>
-        <column name="max_order_amount">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Max Order Amount</item>
+                    <item name="label" xsi:type="string" translate="true">Email</item>
                 </item>
             </argument>
         </column>
@@ -178,10 +136,19 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Bss\CompanyAccount\Ui\Component\Listing\Role\Column\Actions" component="Bss_CompanyAccount/js/role/grid/columns/actions">
-            <settings>
-                <indexField>role_id</indexField>
-            </settings>
-        </actionsColumn>
+        <column name="role_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Role</item>
+                </item>
+            </argument>
+        </column>
     </columns>
 </listing>

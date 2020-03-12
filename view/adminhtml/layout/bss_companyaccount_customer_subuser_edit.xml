@@ -16,16 +16,12 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
- -->
-<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="styles"/>
-    <referenceContainer name="content">
-        <uiComponent name="bss_companyaccount_customer_listroles_listing"/>
-    </referenceContainer>
-
-<!--    <container name="root" label="Root">-->
-<!--        <block class="Bss\CompanyAccount\Block\Adminhtml\Customer\Tab\View\ManageRole"-->
-<!--               name="customer.edit.tab.roles"/>-->
-<!--    </container>-->
-</layout>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="bss_companyaccount_customer_subuser_form"/>
+        </referenceContainer>
+    </body>
+</page>
