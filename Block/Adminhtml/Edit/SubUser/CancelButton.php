@@ -1,4 +1,4 @@
-<!--
+<?php
 /**
  * BSS Commerce Co.
  *
@@ -15,11 +15,20 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
--->
-<!--@subject Welcome! Your account has been approved! @-->
-{{template config_path="design/email/header_template"}}
-<table>
-    <tr>{{trans "Hi %name," name=$varName}}</tr>
-    <tr>Welcome to our website. Your new account is become to company account!</tr>
-</table>
-{{template config_path="design/email/footer_template"}}
+namespace Bss\CompanyAccount\Block\Adminhtml\Edit\SubUser;
+
+/**
+ * Class CancelButton
+ *
+ * @package Bss\CompanyAccount\Block\Adminhtml\Edit\Role
+ */
+class CancelButton extends \Bss\CompanyAccount\Block\Adminhtml\Edit\Button\CancelButton
+{
+
+    public function __construct()
+    {
+        $this->targetName = 'customer_form.areas.bss_company_account_manage_sub_user.'
+            . 'bss_company_account_manage_sub_user.'
+            . 'bss_companyaccount_customer_subuser_update_modal';
+    }
+}

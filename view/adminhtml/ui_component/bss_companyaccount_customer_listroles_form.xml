@@ -27,7 +27,7 @@
         <item name="config" xsi:type="array">
             <item name="deleteConfirmationMessage" translate="true" xsi:type="string">Are you sure you want to delete this role?</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Update Address</item>
+        <item name="label" xsi:type="string" translate="true">Update Role</item>
         <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
@@ -35,7 +35,7 @@
         <buttons>
             <button name="cancel" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\CancelButton"/>
             <button name="delete" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\DeleteButton"/>
-            <button name="save" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Role\SaveButton"/>
+            <button name="save" class="Bss\CompanyAccount\Block\Adminhtml\Edit\Button\SaveButton"/>
         </buttons>
         <namespace>bss_companyaccount_customer_listroles_form</namespace>
         <ajaxSave>true</ajaxSave>

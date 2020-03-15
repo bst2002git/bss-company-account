@@ -117,7 +117,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      * @param int $id
      * @return SubUser|void
      */
-    public function setSubUserId(int $id)
+    public function setSubUserId($id)
     {
         return $this->setData(self::ID, $id);
     }
@@ -138,7 +138,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      * @param int $id
      * @return SubUser|void
      */
-    public function setCompanyCustomerId(int $id)
+    public function setCompanyCustomerId($id)
     {
         return $this->setData(self::CUSTOMER_ID, $id);
     }
@@ -161,7 +161,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      */
     public function setSubUserName(string $name)
     {
-        return $this->getData(self::NAME, $name);
+        return $this->setData(self::NAME, $name);
     }
 
     /**

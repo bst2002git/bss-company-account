@@ -16,17 +16,20 @@
  */
 define([
     'jquery',
+    'Magento_Ui/js/model/messageList',
+    'mage/backend/notification',
     'Magento_Ui/js/modal/alert',
     'Magento_Ui/js/modal/confirm',
     'Magento_Ui/js/form/form',
     'underscore',
     'mage/translate'
-], function ($, uiAlert, uiConfirm, Form, _, $t) {
+], function ($, msg, notification, uiAlert, uiConfirm, Form, _, $t) {
     'use strict';
 
     return Form.extend({
         defaults: {
             deleteConfirmationMessage: '',
+            resetPasswordConfirmationMessage: '',
             ajaxSettings: {
                 method: 'POST',
                 dataType: 'json'
@@ -34,12 +37,12 @@ define([
         },
 
         /**
-         * Delete role by provided url.
-         * Will call confirmation message to be sure that user is really wants to delete this role
+         * Delete sub-user by provided url.
+         * Will call confirmation message to be sure that user is really wants to delete this sub-user
          *
          * @param {String} url - ajax url
          */
-        deleteRole: function (url) {
+        deleteSubUser: function (url) {
             var that = this;
 
             uiConfirm({
@@ -51,6 +54,63 @@ define([
                     }
                 }
             });
+        },
+
+        /**
+         * Send reset password mail by provided url.
+         *
+         * @param {String} url - ajax url
+         */
+        resetPasswordSubUser: function (url) {
+            var self = this;
+            msg.addSuccessMessage({message: 'estttt'});
+
+            uiConfirm({
+                content: this.resetPasswordConfirmationMessage,
+                actions: {
+                    confirm: function () {
+                        self._sendResetPasswordMail(url);
+                    }
+                }
+            });
+        },
+
+        /**
+         * Perform asynchronous POST request to server
+         *
+         * @param {String} url - ajax url
+         */
+        _sendResetPasswordMail: function (url) {
+            var settings = _.extend({}, this.ajaxSettings, {
+                url: url,
+                data: {
+                    'form_key': window.FORM_KEY
+                }
+                }),
+                that = this;
+
+            $('body').trigger('processStart');
+
+            return $.ajax(settings)
+                .done(function (res) {
+                    $('body').notification('clear')
+                        .notification('add', {
+                            error: false,
+                            message: '123',
+                            insertMethod: function (message) {
+                                var $wrapper = $('<div/>').html(message);
+
+                                $('.page-main-actions').after($wrapper);
+                            }
+                        });
+                })
+                .fail(function (res) {
+                    uiAlert({
+                        content: res.statusText
+                    });
+                }).always(function () {
+                    $('body').trigger('processStop');
+                });
         },
 
         /**
@@ -77,7 +137,7 @@ define([
                             content: response.message
                         });
                     } else {
-                        that.trigger('deleteRoleAction', that.source.get('data.role_id'));
+                        that.trigger('deleteSubUserAction');
                     }
                 })
                 .fail(function () {

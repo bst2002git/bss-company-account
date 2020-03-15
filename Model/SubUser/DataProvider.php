@@ -16,16 +16,16 @@ declare(strict_types=1);
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Model\SubRole;
+namespace Bss\CompanyAccount\Model\SubUser;
 
-use Bss\CompanyAccount\Model\ResourceModel\SubRole\CollectionFactory;
-use Bss\CompanyAccount\Model\SubRole;
+use Bss\CompanyAccount\Model\ResourceModel\SubUser\CollectionFactory;
+use Bss\CompanyAccount\Model\SubUser;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 
 /**
  * Data provider of customer addresses for customer address grid.
  *
- * @property \Bss\CompanyAccount\Model\ResourceModel\SubRole\Collection $collection
+ * @property \Bss\CompanyAccount\Model\ResourceModel\SubUser\Collection $collection
  */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
@@ -67,7 +67,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
-     * Get roles data
+     * Get sub-user data
      *
      * @return array
      */
@@ -77,10 +77,10 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             return $this->loadedData;
         }
         $items = $this->collection->getItems();
-        /** @var SubRole $item */
+        /** @var SubUser $item */
         foreach ($items as $item) {
-            $roleId = $item->getRoleId();
-            $this->loadedData[$roleId] = $item->getData();
+            $subId = $item->getSubUserId();
+            $this->loadedData[$subId] = $item->getData();
         }
         $this->loadedData[''] = $this->getDefaultData();
 
@@ -88,7 +88,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
-     * Get default customer data for adding new role
+     * Get default customer data for adding new sub-user
      *
      * @return array
      */

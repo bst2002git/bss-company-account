@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 /**
  * BSS Commerce Co.
  *
@@ -16,31 +15,34 @@ declare(strict_types=1);
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Block\Adminhtml\Edit\Role;
-
-use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
-use Magento\Customer\Block\Adminhtml\Edit\GenericButton;
+namespace Bss\CompanyAccount\Model\Config\Source;
 
 /**
- * Class SaveButton
+ * Class EnableDisable
+ *
+ * @package Bss\CompanyAccount\Model\Config\Source
  */
-class SaveButton extends GenericButton implements ButtonProviderInterface
+class EnableDisable implements \Magento\Framework\Option\ArrayInterface
 {
+    const ENABLE = 1;
+    const DISABLE = 0;
+
     /**
-     * @inheritdoc
+     * Get enable/disable option
      *
      * @return array
      */
-    public function getButtonData()
+    public function toOptionArray()
     {
         return [
-            'label' => __('Save'),
-            'class' => 'save primary',
-            'data_attribute' => [
-                'mage-init' => ['button' => ['event' => 'save']],
-                'form-role' => 'save',
+            [
+                'label' => __('Enable'),
+                'value' => self::ENABLE
             ],
-            'sort_order' => 10
+            [
+                'label' => __('Disable'),
+                'value' => self::DISABLE
+            ]
         ];
     }
 }

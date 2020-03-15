@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * BSS Commerce Co.
  *
@@ -15,22 +16,25 @@
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Block\Adminhtml\Edit\Role;
+namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\SubUser;
+
+use Magento\Backend\App\Action;
+use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\ResponseInterface;
 
 /**
- * Class CancelButton
+ * Class ResetPasswordMail
  *
- * @package Bss\CompanyAccount\Block\Adminhtml\Edit\Role
+ * @package Bss\CompanyAccount\Controller\Adminhtml\Customer\SubUser
  */
-class CancelButton extends \Bss\CompanyAccount\Block\Adminhtml\Edit\Button\CancelButton
+class ResetPasswordMail extends Action implements HttpPostActionInterface
 {
+
     /**
-     * CancelButton constructor.
+     * @inheritDoc
      */
-    public function __construct()
+    public function execute()
     {
-        $this->targetName = 'customer_form.areas.bss_company_account_manage_role.'
-            . 'bss_company_account_manage_role.'
-            . 'bss_companyaccount_customer_listroles_update_modal';
+        dd(1);
     }
 }

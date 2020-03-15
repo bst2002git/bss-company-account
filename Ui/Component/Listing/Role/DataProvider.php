@@ -35,9 +35,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     /**
      * DataProvider constructor.
      *
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param array $meta
      * @param array $data
      * @param CollectionFactory $collectionFactory
@@ -77,8 +77,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
                     ["null" => true]
                 ]
             );
-            $data = $collection->toArray();
         }
+        $data = $collection->toArray();
 
         return $data;
     }

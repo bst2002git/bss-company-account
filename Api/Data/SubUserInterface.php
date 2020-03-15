@@ -97,7 +97,7 @@ interface SubUserInterface
      * @param int $id
      * @return void
      */
-    public function setSubUserId(int $id);
+    public function setSubUserId($id);
 
     /**
      * Get company customer related id
@@ -112,7 +112,7 @@ interface SubUserInterface
      * @param int $id
      * @return void
      */
-    public function setCompanyCustomerId(int $id);
+    public function setCompanyCustomerId($id);
 
     /**
      * Get sub user name

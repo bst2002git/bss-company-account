@@ -35,11 +35,6 @@ class Save extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
 
     /**
-     * @var \Magento\Customer\Api\CustomerRepositoryInterface
-     */
-    private $customerRepository;
-
-    /**
      * @var JsonFactory
      */
     private $resultJsonFactory;
@@ -63,7 +58,6 @@ class Save extends Action implements HttpPostActionInterface
      * Save constructor.
      *
      * @param Action\Context $context
-     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Bss\CompanyAccount\Api\SubRoleRepositoryInterface $roleRepository
      * @param \Bss\CompanyAccount\Api\Data\SubRoleInterfaceFactory $roleFactory
      * @param LoggerInterface $logger
@@ -71,14 +65,12 @@ class Save extends Action implements HttpPostActionInterface
      */
     public function __construct(
         Action\Context $context,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Bss\CompanyAccount\Api\SubRoleRepositoryInterface $roleRepository,
         \Bss\CompanyAccount\Api\Data\SubRoleInterfaceFactory $roleFactory,
         LoggerInterface $logger,
         JsonFactory $resultJsonFactory
     ) {
         parent::__construct($context);
-        $this->customerRepository = $customerRepository;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->logger = $logger;
         $this->roleRepository = $roleRepository;

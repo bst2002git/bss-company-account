@@ -17,7 +17,7 @@
  */
 namespace Bss\CompanyAccount\Ui\Component\Listing\SubUser;
 
-use Bss\CompanyAccount\Model\ResourceModel\SubRole\Grid\CollectionFactory;
+use Bss\CompanyAccount\Model\ResourceModel\SubUser\Grid\CollectionFactory;
 use Magento\Framework\Api\Filter;
 
 /**
@@ -35,9 +35,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     /**
      * DataProvider constructor.
      *
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param array $meta
      * @param array $data
      * @param CollectionFactory $collectionFactory
@@ -77,8 +77,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
                     ["null" => true]
                 ]
             );
-            $data = $collection->toArray();
+
         }
+        $data = $collection->toArray();
 
         return $data;
     }
@@ -100,12 +101,16 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $value = trim($filter->getValue());
             $this->collection->addFieldToFilter(
                 [
+                    ['attribute' => 'sub_id'],
+                    ['attribute' => 'customer_id'],
+                    ['attribute' => 'sub_name'],
+                    ['attribute' => 'sub_email'],
+                    ['attribute' => 'sub_status'],
                     ['attribute' => 'role_id'],
-                    ['attribute' => 'role_name'],
-                    ['attribute' => 'role_type'],
-                    ['attribute' => 'order_per_day'],
-                    ['attribute' => 'max_order_amount'],
-                    ['attribute' => 'customer_id']
+                    ['attribute' => 'created_at'],
+                    ['attribute' => 'quote_id'],
+                    ['attribute' => 'parent_quote_id'],
+                    ['attribute' => 'quote_status']
                 ],
                 [
                     ['like' => "%{$value}%"],
@@ -114,7 +119,10 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
                     ['like' => "%{$value}%"],
                     ['like' => "%{$value}%"],
                     ['like' => "%{$value}%"],
-                    ['like' => "%{$value}%"]
+                    ['like' => "%{$value}%"],
+                    ['like' => "%{$value}%"],
+                    ['like' => "%{$value}%"],
+                    ['like' => "%{$value}%"],
                 ]
             );
         }

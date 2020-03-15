@@ -51,39 +51,42 @@
                 </field>
 
                 <field id="ca_approval" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Company Account Approval]]></label>
+                    <label><![CDATA[Active Company Account]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
                 <field id="send_approval_copy_to" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Approval Email Copy to]]></label>
+                    <label><![CDATA[Send Active Email Copy to]]></label>
                 </field>
 
                 <field id="ca_remove" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Company Account Remove]]></label>
+                    <label><![CDATA[Deactive Company Account]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
                 <field id="send_remove_copy_to" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Send Remove Email Copy to]]></label>
+                    <label><![CDATA[Send Deactive Email Copy to]]></label>
                 </field>
 
-                <field id="subuser_confirmation" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Sub User Confirmation]]></label>
+                <field id="subuser_welcome" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Welcome Sub-user to Company Account]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="subuser_welcome" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Welcome Sub User Notification]]></label>
+                <field id="subuser_disable" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Disabled Sub-user from Company Account]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="subuser_disabled" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label><![CDATA[Disabled Sub User Notification]]></label>
+                <field id="subuser_remove" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Remove Sub-user from Company Account]]></label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
+                <field id="subuser_reset_password" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Reset Sub-user Password]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
             </group>
-
         </section>
     </system>
 </config>

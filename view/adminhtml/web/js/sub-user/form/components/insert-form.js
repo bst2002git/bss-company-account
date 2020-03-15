@@ -26,34 +26,32 @@ define([
                 responseData: 'onResponse'
             },
             modules: {
-                roleListing: '${ $.roleListingProvider }',
-                roleModal: '${ $.roleModalProvider }'
+                subUserListing: '${ $.subUserListingProvider }',
+                subUserModal: '${ $.subUserModalProvider }'
             }
         },
 
         /**
-         * Close modal, reload customer address listing and save customer address
+         * Close modal, reload sub-user listing
          *
          * @param {Object} responseData
          */
         onResponse: function (responseData) {
             if (!responseData.error) {
-                this.roleModal().closeModal();
-                this.roleListing().reload({
+                this.subUserModal().closeModal();
+                this.subUserListing().reload({
                     refresh: true
                 });
             }
         },
 
         /**
-         * Event method that closes "Edit role" modal and refreshes grid after role
-         * was removed through "Delete" button on the "Edit role" modal
-         *
-         * @param {String} id - role ID to delete
+         * Event method that closes "Edit" modal and refreshes grid after sub-user
+         * was removed through "Delete" button on the "Edit" modal
          */
-        onRoleDelete: function (id) {
-            this.roleModal().closeModal();
-            this.roleListing().reload({
+        onSubUserDelete: function () {
+            this.subUserModal().closeModal();
+            this.subUserListing().reload({
                 refresh: true
             });
         }

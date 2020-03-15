@@ -69,7 +69,7 @@
         <exportButton name="export_button"/>
         <filters name="listing_filters" />
         <filterSearch name="fulltext"/>
-        <massaction name="listing_massaction" component="Magento_Customer/js/grid/massactions">
+        <massaction name="listing_massaction" component="Bss_CompanyAccount/js/grid/massactions">
             <action name="delete">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
@@ -178,7 +178,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Bss\CompanyAccount\Ui\Component\Listing\Role\Column\Actions" component="Bss_CompanyAccount/js/role/grid/columns/actions">
+        <actionsColumn name="actions" class="Bss\CompanyAccount\Ui\Component\Listing\Role\Column\Actions" component="Bss_CompanyAccount/js/grid/columns/actions">
             <settings>
                 <indexField>role_id</indexField>
             </settings>

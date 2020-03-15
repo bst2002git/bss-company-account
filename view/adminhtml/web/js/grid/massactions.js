@@ -16,80 +16,83 @@
  */
 
 define([
-    'Magento_Ui/js/grid/columns/actions',
+    'Magento_Ui/js/grid/massactions',
     'Magento_Ui/js/modal/alert',
     'underscore',
     'jquery',
     'mage/translate'
-], function (Actions, uiAlert, _, $, $t) {
+], function (Massactions, uiAlert, _, $, $t) {
     'use strict';
 
-    return Actions.extend({
+    return Massactions.extend({
         defaults: {
             ajaxSettings: {
                 method: 'POST',
                 dataType: 'json'
             },
             listens: {
-                action: 'onAction'
+                massaction: 'onAction'
             }
         },
 
         /**
-         * Reload role listing data source after role delete action
+         * Reload data listing
          *
          * @param {Object} data
          */
         onAction: function (data) {
             if (data.action === 'delete') {
-                this.source().reload({
+                this.source.reload({
                     refresh: true
                 });
             }
         },
 
         /**
-         * Default action callback. Redirects to
-         * the specified in action's data url.
+         * Default action callback. Send selections data
+         * via POST request.
          *
-         * @param {String} actionIndex - Action's identifier.
-         * @param {(Number|String)} recordId - Id of the record associated
-         *      with a specified action.
-         * @param {Object} action - Action's data.
+         * @param {Object} action - Action data.
+         * @param {Object} data - Selections data.
          */
-        defaultCallback: function (actionIndex, recordId, action) {
+        defaultCallback: function (action, data) {
+            var itemsType, selections;
+
             if (action.isAjax) {
-                this.request(action.href).done(function (response) {
-                    var data;
+                itemsType = data.excludeMode ? 'excluded' : 'selected';
+                selections = {};
 
+                selections[itemsType] = data[itemsType];
+
+                if (!selections[itemsType].length) {
+                    selections[itemsType] = false;
+                }
+
+                _.extend(selections, data.params || {});
+
+                this.request(action.url, selections).done(function (response) {
                     if (!response.error) {
-                        data = _.findWhere(this.rows, {
-                            _rowIndex: action.rowIndex
-                        });
-
-                        this.trigger('action', {
-                            action: actionIndex,
-                            data: data
+                        this.trigger('massaction', {
+                            action: action.type,
+                            data: selections
                         });
                     }
                 }.bind(this));
-
             } else {
                 this._super();
             }
         },
 
         /**
-         * Send role listing ajax request
+         * Send listing data mass action ajax request
          *
          * @param {String} href
+         * @param {Object} data
          */
-        request: function (href) {
+        request: function (href, data) {
             var settings = _.extend({}, this.ajaxSettings, {
                 url: href,
-                data: {
-                    'form_key': window.FORM_KEY
-                }
+                data: data
             });
 
             $('body').trigger('processStart');

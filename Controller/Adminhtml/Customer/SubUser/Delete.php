@@ -16,9 +16,9 @@ declare(strict_types=1);
  * @copyright  Copyright (c) 2020 BSS Commerce Co. ( http://bsscommerce.com )
  * @license    http://bsscommerce.com/Bss-Commerce-License.txt
  */
-namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\Role;
+namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\SubUser;
 
-use Bss\CompanyAccount\Api\SubRoleRepositoryInterface;
+use Bss\CompanyAccount\Api\SubUserRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
@@ -39,9 +39,9 @@ class Delete extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
 
     /**
-     * @var SubRoleRepositoryInterface
+     * @var SubUserRepositoryInterface
      */
-    private $roleRepository;
+    private $userRepository;
 
     /**
      * @var LoggerInterface
@@ -56,40 +56,36 @@ class Delete extends Action implements HttpPostActionInterface
     /**
      * Delete constructor.
      *
-     * @param SubRoleRepositoryInterface $roleRepository
+     * @param SubUserRepositoryInterface $userRepository
      * @param LoggerInterface $logger
      * @param JsonFactory $resultJsonFactory
      * @param Action\Context $context
      */
     public function __construct(
-        SubRoleRepositoryInterface $roleRepository,
+        SubUserRepositoryInterface $userRepository,
         LoggerInterface $logger,
         JsonFactory $resultJsonFactory,
         Action\Context $context
     ) {
-        $this->roleRepository = $roleRepository;
+        $this->userRepository = $userRepository;
         $this->logger = $logger;
         $this->resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
     }
 
     /**
-     * Delete role action
+     * Delete sub-user action
      */
     public function execute()
     {
         $error = false;
         try {
             $roleId = $this->getRequest()->getParam('id');
-            if ((int)$roleId !== 0) {
-                $this->roleRepository->deleteById((int)$roleId);
-                $message = __('You deleted the role.');
-            } else {
-                $message = __('We can\'t delete this default admin role for you right now.');
-            }
+            $this->userRepository->deleteById((int)$roleId);
+            $message = __('You deleted the sub-user.');
         } catch (\Exception $e) {
             $error = true;
-            $message = __('We can\'t delete the role right now.');
+            $message = __('We can\'t delete the sub-user right now.');
             $this->logger->critical($e);
         }
         $resultJson = $this->resultJsonFactory->create();

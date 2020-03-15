@@ -159,8 +159,8 @@
             <insertForm name="update_bss_companyaccount_customer_subuser_form_loader" component="Bss_CompanyAccount/js/sub-user/form/components/insert-form">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="roleListingProvider" xsi:type="string">ns = bss_companyaccount_customer_subuser_listing, index = bss_companyaccount_customer_subuser_listing</item>
-                        <item name="roleModalProvider" xsi:type="string">${ $.parentName }</item>
+                        <item name="subUserListingProvider" xsi:type="string">ns = bss_companyaccount_customer_subuser_listing, index = bss_companyaccount_customer_subuser_listing</item>
+                        <item name="subUserModalProvider" xsi:type="string">${ $.parentName }</item>
                     </item>
                 </argument>
                 <settings>
@@ -179,6 +179,39 @@
                     <imports>
                         <link name="parentId">${ $.provider}:data.sub_id</link>
                         <link name="onSubUserDelete">${ $.ns }.${ $.ns }:deleteSubUserAction</link>
+                    </imports>
+                </settings>
+            </insertForm>
+        </modal>
+        <modal name="bss_companyaccount_customer_subuser_set_password_modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string" translate="true">Set New Password for Sub-user</option>
+                </options>
+            </settings>
+            <insertForm name="update_bss_companyaccount_customer_subuser_form_loader" component="Bss_CompanyAccount/js/sub-user/form/components/insert-form">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="subUserListingProvider" xsi:type="string">ns = bss_companyaccount_customer_subuser_listing, index = bss_companyaccount_customer_subuser_listing</item>
+                        <item name="subUserModalProvider" xsi:type="string">${ $.parentName }</item>
+                    </item>
+                </argument>
+                <settings>
+                    <formSubmitType>ajax</formSubmitType>
+                    <renderUrl path="mui/index/render_handle">
+                        <param name="handle">bss_companyaccount_customer_subuser_set_password</param>
+                        <param name="buttons">1</param>
+                    </renderUrl>
+                    <loading>true</loading>
+                    <toolbarContainer>${ $.parentName }</toolbarContainer>
+                    <externalProvider>${ $.ns }.bss_companyaccount_customer_subuser_set_password_form_data_source</externalProvider>
+                    <ns>bss_companyaccount_customer_subuser_set_password_form</ns>
+                    <exports>
+                        <link name="parentId">${ $.externalProvider }:data.parent_id</link>
+                    </exports>
+                    <imports>
+                        <link name="parentId">${ $.provider}:data.sub_id</link>
+                        <link name="onRoleDelete">${ $.ns }.${ $.ns }:deleteRoleAction</link>
                     </imports>
                 </settings>
             </insertForm>
