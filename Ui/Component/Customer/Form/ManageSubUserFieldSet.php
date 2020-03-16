@@ -63,6 +63,9 @@ class ManageSubUserFieldSet extends \Magento\Ui\Component\Form\Fieldset implemen
     public function isComponentVisible(): bool
     {
         $customerId = $this->context->getRequestParam('id');
-        return $this->isCompanyAccount((int)$customerId);
+        if ($customerId) {
+            return $this->isCompanyAccount((int)$customerId);
+        }
+        return false;
     }
 }

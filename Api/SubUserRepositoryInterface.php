@@ -42,7 +42,7 @@ interface SubUserRepositoryInterface
      * @param int $id
      * @return SubUserInterface
      */
-    public function getById(int $id);
+    public function getById($id);
 
     /**
      * Retrieve sub users matching the specified criteria

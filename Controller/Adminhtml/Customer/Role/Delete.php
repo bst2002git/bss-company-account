@@ -36,7 +36,7 @@ class Delete extends Action implements HttpPostActionInterface
      *
      * @see _isAllowed()
      */
-    public const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
+    const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
 
     /**
      * @var SubRoleRepositoryInterface

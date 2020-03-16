@@ -20,6 +20,7 @@ namespace Bss\CompanyAccount\Controller\Adminhtml\Customer\SubUser;
 
 use Bss\CompanyAccount\Api\SubUserRepositoryInterface;
 use Magento\Backend\App\Action;
+use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Psr\Log\LoggerInterface;
 use Bss\CompanyAccount\Api\Data\SubUserInterface as SubUser;
@@ -36,7 +37,7 @@ class Store extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    public const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
+    const ADMIN_RESOURCE = 'Bss_CompanyAccount::config_section';
 
     /**
      * @var LoggerInterface
@@ -57,20 +58,26 @@ class Store extends \Magento\Backend\App\Action
      * @var SubUserRepositoryInterface
      */
     private $subUserRepository;
+    /**
+     * @var CustomerRepository
+     */
+    private $customerRepository;
 
     /**
      * Store constructor.
      *
+     * @param Action\Context $context
      * @param LoggerInterface $logger
      * @param JsonFactory $resultJsonFactory
+     * @param CustomerRepository $customerRepository
      * @param SubUserRepositoryInterface $subUserRepository
      * @param \Bss\CompanyAccount\Api\Data\SubUserInterfaceFactory $subUserFactory
-     * @param Action\Context $context
      */
     public function __construct(
         Action\Context $context,
         LoggerInterface $logger,
         JsonFactory $resultJsonFactory,
+        CustomerRepository $customerRepository,
         \Bss\CompanyAccount\Api\SubUserRepositoryInterface $subUserRepository,
         \Bss\CompanyAccount\Api\Data\SubUserInterfaceFactory $subUserFactory
     ) {
@@ -79,6 +86,7 @@ class Store extends \Magento\Backend\App\Action
         $this->resultJsonFactory = $resultJsonFactory;
         $this->subUserRepository = $subUserRepository;
         $this->subUserFactory = $subUserFactory;
+        $this->customerRepository = $customerRepository;
     }
 
     /**
@@ -92,6 +100,9 @@ class Store extends \Magento\Backend\App\Action
         $subId = $this->getRequest()->getParam('sub_id', '');
         $error = false;
         try {
+            //$existUser = $this->customerRepository->get($this->getRequest()->getParam(SubUser::EMAIL));
+            // dd($existUser);
+
             /** @var \Bss\CompanyAccount\Api\Data\SubUserInterface $user */
             $user = $this->subUserFactory->create();
             $user->setSubUserName($this->getRequest()->getParam(SubUser::NAME));
@@ -109,6 +120,7 @@ class Store extends \Magento\Backend\App\Action
             }
             $this->subUserRepository->save($user);
         } catch (\Exception $exception) {
+//            dd($exception);
             $error = true;
             $message = __('We can\'t save sub-user right now.');
             $this->logger->critical($exception);

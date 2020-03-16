@@ -59,15 +59,15 @@ trait SendMailTrait
     /**
      * Send email
      *
-     * @param $receiver
-     * @param string $ccMails
+     * @param string|null $receiver
+     * @param string|null $ccMails
      * @param string $mailTemplate
      * @param array $options
      * @param array $vars
      * @return bool
      * @throws \Exception
      */
-    public function sendMail($receiver = null, $ccMails = '', $mailTemplate = '', $options = [], $vars = [])
+    public function sendMail($receiver = null, $ccMails = null, $mailTemplate = '', $options = [], $vars = [])
     {
         try {
             $senderEmail = $this->helper->getEmailSender();
@@ -83,13 +83,15 @@ trait SendMailTrait
                 ->setTemplateVars($vars)
                 ->setFrom($sender)
                 ->addTo($receiver);
-            if (strpos($ccMails, ',') !== false) {
-                $ccMails = explode(',', $ccMails);
-                foreach ($ccMails as $mail) {
-                    trim($mail) !== "" ? $this->transportBuilder->addCc(trim($mail)) : false;
+            if ($ccMails !== null) {
+                if (strpos($ccMails, ',') !== false) {
+                    $ccMails = explode(',', $ccMails);
+                    foreach ($ccMails as $mail) {
+                        trim($mail) !== "" ? $this->transportBuilder->addCc(trim($mail)) : false;
+                    }
+                } else {
+                    $this->transportBuilder->addCc(trim($ccMails));
                 }
-            } else {
-                $this->transportBuilder->addCc(trim($ccMails));
             }
             $transport = $this->transportBuilder->getTransport();
             $transport->sendMessage();

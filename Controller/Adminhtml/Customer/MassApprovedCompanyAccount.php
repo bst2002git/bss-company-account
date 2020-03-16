@@ -17,13 +17,13 @@
  */
 namespace Bss\CompanyAccount\Controller\Adminhtml\Customer;
 
+use Bss\CompanyAccount\Helper\SendMailTrait;
 use Bss\CompanyAccount\Model\Config\Source\CompanyAccountValue;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Eav\Model\Entity\Collection\AbstractCollection;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Bss\CompanyAccount\Helper\SendMailTrait;
 
 /**
  * Class MassApprovedCompanyAccount
@@ -41,10 +41,12 @@ class MassApprovedCompanyAccount extends \Magento\Customer\Controller\Adminhtml\
      * @var CustomerRepositoryInterface
      */
     private $customerRepository;
+
     /**
      * @var \Bss\CompanyAccount\Helper\Data
      */
     private $helper;
+
     /**
      * @var \Bss\CompanyAccount\Helper\GetType
      */
@@ -79,7 +81,12 @@ class MassApprovedCompanyAccount extends \Magento\Customer\Controller\Adminhtml\
     }
 
     /**
-     * @inheritDoc
+     * Do Approve company account account and send mail
+     *
+     * @param AbstractCollection $collection
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     protected function massAction(AbstractCollection $collection)
     {

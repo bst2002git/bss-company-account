@@ -23,6 +23,15 @@
             <general>
                 <enable>1</enable>
             </general>
+            <email>
+                <email_sender>support</email_sender>
+                <ca_approval>bss_company_account_email_ca_approval</ca_approval>
+                <ca_remove>bss_company_account_email_ca_remove</ca_remove>
+                <subuser_welcome>bss_company_account_email_subuser_welcome</subuser_welcome>
+                <subuser_disable>bss_company_account_email_subuser_disable</subuser_disable>
+                <subuser_remove>bss_company_account_email_subuser_remove</subuser_remove>
+                <subuser_reset_password>bss_company_account_email_subuser_reset_password</subuser_reset_password>
+            </email>
         </bss_company_account>
     </default>
 </config>

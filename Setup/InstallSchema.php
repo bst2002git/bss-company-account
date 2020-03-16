@@ -198,6 +198,14 @@ class InstallSchema implements InstallSchemaInterface
                 ],
                 'Sub User\'s Token'
             )->addColumn(
+                'token_expires_at',
+                Table::TYPE_TIMESTAMP,
+                null,
+                [
+                    'nullable' => true,
+                ],
+                'The expires time of reset/forget password request.'
+            )->addColumn(
                 'created_at',
                 Table::TYPE_TIMESTAMP,
                 null,

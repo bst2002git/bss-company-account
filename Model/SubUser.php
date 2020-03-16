@@ -102,13 +102,13 @@ class SubUser extends AbstractModel implements SubUserInterface
     }
 
     /**
-     * Get identififier
+     * Get identifier
      *
      * @return int|mixed
      */
     public function getSubUserId()
     {
-        return $this->getData(self::ID);
+        return (int)$this->getData(self::ID);
     }
 
     /**
@@ -129,7 +129,7 @@ class SubUser extends AbstractModel implements SubUserInterface
      */
     public function getCompanyCustomerId()
     {
-        return $this->getData(self::CUSTOMER_ID);
+        return (int)$this->getData(self::CUSTOMER_ID);
     }
 
     /**

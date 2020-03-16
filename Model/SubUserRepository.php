@@ -72,7 +72,7 @@ class SubUserRepository implements SubUserRepositoryInterface
      * @param int $id
      * @return SubUserInterface
      */
-    public function getById(int $id)
+    public function getById($id)
     {
         $user = $this->userFactory->create();
         $this->userResource->load($user, $id);

@@ -16,14 +16,13 @@
  */
 define([
     'jquery',
-    'Magento_Ui/js/model/messageList',
     'mage/backend/notification',
     'Magento_Ui/js/modal/alert',
     'Magento_Ui/js/modal/confirm',
     'Magento_Ui/js/form/form',
     'underscore',
     'mage/translate'
-], function ($, msg, notification, uiAlert, uiConfirm, Form, _, $t) {
+], function ($, notification, uiAlert, uiConfirm, Form, _, $t) {
     'use strict';
 
     return Form.extend({
@@ -63,7 +62,6 @@ define([
          */
         resetPasswordSubUser: function (url) {
             var self = this;
-            msg.addSuccessMessage({message: 'estttt'});
 
             uiConfirm({
                 content: this.resetPasswordConfirmationMessage,
@@ -93,21 +91,18 @@ define([
 
             return $.ajax(settings)
                 .done(function (res) {
-                    $('body').notification('clear')
+                    $('body').notification()
+                        .notification('clear')
                         .notification('add', {
-                            error: false,
-                            message: '123',
+                            reset_pw_subuser_request_success: res.request_success,
+                            error: res.error,
+                            message: res.message,
                             insertMethod: function (message) {
                                 var $wrapper = $('<div/>').html(message);
 
                                 $('.page-main-actions').after($wrapper);
                             }
                         });
-                })
-                .fail(function (res) {
-                    uiAlert({
-                        content: res.statusText
-                    });
                 }).always(function () {
                     $('body').trigger('processStop');
                 });

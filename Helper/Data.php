@@ -33,6 +33,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const XML_PATH_COMPANY_ACCOUNT_REMOVE_EMAIL_TEMPLATE = 'bss_company_account/email/ca_remove';
     const XML_PATH_APPROVAL_COPY_TO_EMAILS = 'bss_company_account/email/send_approval_copy_to';
     const XML_PATH_REMOVE_COPY_TO_EMAILS = 'bss_company_account/email/send_remove_copy_to';
+    const XML_PATH_RESET_SUBUSER_PASSWORD_EMAIL_TEMPLATE = 'bss_company_account/email/subuser_reset_password';
 
     /**
      * @var HelperData
@@ -123,6 +124,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->getValue(
             self::XML_PATH_COMPANY_ACCOUNT_REMOVE_EMAIL_TEMPLATE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Get reset sub-user reset password email template
+     *
+     * @return string
+     */
+    public function getResetSubUserPasswordEmailTemplate()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_RESET_SUBUSER_PASSWORD_EMAIL_TEMPLATE,
             ScopeInterface::SCOPE_STORE
         );
     }

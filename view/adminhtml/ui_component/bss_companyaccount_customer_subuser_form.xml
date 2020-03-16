@@ -64,15 +64,6 @@
             </settings>
         </dataProvider>
     </dataSource>
-<!--    <container name="notifications" component="Magento_Ui/js/view/messages">-->
-<!--        <argument name="data" xsi:type="array">-->
-<!--            <item name="children" xsi:type="array">-->
-<!--                <item name="messages" xsi:type="array">-->
-<!--                    <item name="displayArea" xsi:type="string">messages</item>-->
-<!--                </item>-->
-<!--            </item>-->
-<!--        </argument>-->
-<!--    </container>-->
     <container name="messages" component="Magento_Ui/js/form/components/html">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -88,8 +79,6 @@
             </item>
         </argument>
     </container>
-
-    <container name="success_messages" component="Magento_Ui/js/view/messages" />
 
     <fieldset name="general">
         <argument name="data" xsi:type="array">
